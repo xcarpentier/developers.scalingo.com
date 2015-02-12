@@ -1,6 +1,6 @@
 # Site settings
 title: Scalingo API
-email: your-email@domain.com
+email: hello@scalingo.com
 description: Scalingo API
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://developers.scalingo.com" # the base hostname & protocol for your site
