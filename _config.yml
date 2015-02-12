@@ -1,0 +1,11 @@
+# Site settings
+title: Scalingo API
+email: your-email@domain.com
+description: Scalingo API
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://developers.scalingo.com" # the base hostname & protocol for your site
+twitter_username: ScalingoHQ
+github_username:  scalingo
+
+# Build settings
+markdown: kramdown
