@@ -2,6 +2,39 @@ require 'kramdown'
 require 'nokogiri'
 require 'pry'
 
+def content_tag name, content, options = {}
+  attributes = options.inject(""){|memo, (k,v)|
+    memo << "#{k}='#{v}'"
+    memo
+  }
+  "<#{name} #{attributes}>#{content}</#{name}>"
+end
+
+def doc_for(content)
+  html = content
+  Nokogiri::HTML::DocumentFragment.parse(html)
+end
+
+def toc_link(heading)
+  heading_id = heading[:id] || "#"
+  content_tag(:a, heading.text, href: "#" + heading_id)
+end
+
+def toc_item(heading)
+  content_tag(:li, toc_link(heading))
+end
+
+def heading_nodes(content, element_type = 'h2')
+  doc_for(content).css(element_type)
+end
+
+def table_of_contents(content)
+  list = heading_nodes(content).map do |heading|
+    toc_item(heading)
+  end.join
+  content_tag(:ul, list, class: "list-unstyled")
+end
+
 row_identifier = "--- row ---"
 col_identifier = "||| col |||"
 
@@ -11,6 +44,8 @@ sidebar_text_begin_tag = "<div class='col-xs-12 col-sm-6 sidebar-text'>"
 sidebar_text_end_tag   = "</div>"
 sidebar_code_begin_tag = "<div class='col-xs-12 col-sm-6 sidebar-code'>"
 sidebar_code_end_tag   = "</div>"
+
+list_of_resources = {}
 
 files = File.join "markdown", "*"
 Dir.glob(files).each{|input_filename|
@@ -46,6 +81,11 @@ Dir.glob(files).each{|input_filename|
     f.puts table_of_contents(text_transformed)
   end
 
+  unless basename == "index"
+    resource_name = heading_nodes(text_transformed, 'h1').first.text
+    list_of_resources[resource_name] = output_filename
+  end
+
   File.open(output_filename, "w+") do |f|
     f.puts '---'
     f.puts 'layout: default'
@@ -55,31 +95,8 @@ Dir.glob(files).each{|input_filename|
   end
 }
 
-def body_for(resource)
-  resource.render(layout: nil)
-end
-
-def doc_for(resource)
-  html = body_for(resource)
-  Nokogiri::HTML::DocumentFragment.parse(html)
-end
-
-def toc_link(heading)
-  heading_id = heading[:id] || "#"
-  content_tag(:a, heading.text, href: "#" + heading_id)
-end
-
-def toc_item(heading)
-  content_tag(:li, toc_link(heading))
-end
-
-def heading_nodes(resource)
-  doc_for(resource).css('h2')
-end
-
-def table_of_contents(resource)
-  list = heading_nodes(resource).map do |heading|
-    toc_item(heading)
-  end.join
-  content_tag(:ul, list), class: "list-unstyled")
+File.open("_includes/list_of_resources.html", "w+") do |f|
+  list_of_resources.each{|resource_name, output_filename|
+    f.puts "<li><a href='#{output_filename}'>#{resource_name}</a></li>"
+  }
 end
