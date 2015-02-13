@@ -3,30 +3,40 @@
 
 @import "syntax-highlighting"
 
-html
-  position: relative
-  min-height: 100%
-
 body
   color: #212121
   font-family: 'Open Sans', sans-serif
 
-.logo
-  margin-top: 0
-  height: 40px
-  display: block
-
 .sidebar-nav
-  background-color: #fafafa
-  display: block
-  height: 100%
+  background-color: darken(#fafafa, 5%)
   padding-top: 15px
   padding-bottom: 15px
 
-.main
-  background-color: #272822
-  color: white
+.logo
+  margin-top: 15px
+  height: 40px
+  display: block
 
+.main
   .sidebar-text
     background-color: white
     color: #212121
+  .sidebar-code
+    background-color: #272822
+    color: white
+
+@media (min-width: 768px)
+  .sidebar-nav
+    height: 100%
+    left: 0
+    overflow: auto
+    position: fixed
+    top: 0
+    display: block
+  .main
+    display: table
+    > .row
+      display: table-row
+      > div[class*='col-']
+        display: table-cell
+        float: none
