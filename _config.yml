@@ -9,3 +9,6 @@ github_username:  scalingo
 
 # Build settings
 markdown: kramdown
+
+kramdown:
+  input: GFM
