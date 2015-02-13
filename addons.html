@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+<div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="addons">Addons</h1>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="list-app-addons">List app addons</h2>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><strong>App addon</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plan</td>
+      <td>embedded reference to Plan resource</td>
+    </tr>
+    <tr>
+      <td>resource_id</td>
+      <td>resource reference</td>
+    </tr>
+    <tr>
+      <td>addon_provider</td>
+      <td>embedded reference to AddonProvider resource</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p><code>GET https://api.scalingo.com/v1/apps/[:app]/addons</code></p>
+
+<p><code>
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/addons
+</code></p>
+
+<p>Returns 200 Created
+<code>json
+ "id" : "5415beca646173000b0b0000",
+{
+    "addons": [{
+         "plan" : {
+            "description" : "* Free plan\r\n* No backups (you can do it yourself)\r\n* 64MB RAM\r\n* 64MB disk space (hard limit)\r\n* Multiple Users\r\n* Community Support\r\n* Ideal for non critical cache or queueing system",
+            "display_name" : "64MB Free tier",
+            "id" : "52fd2357356330000b080000",
+            "name" : "free",
+            "price" : 0
+         },
+         "resource_id" : "dashboard_3083",
+         "addon_provider" : {
+            "id" : "scalingo-redis",
+            "name" : "scalingo-redis"
+         }
+    }]
+}
+</code></p>
+</div></div>

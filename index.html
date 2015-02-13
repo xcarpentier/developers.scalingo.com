@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+<div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="global-information">Global information</h1>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="summary">Summary</h2>
+
+<p>The current API version is the <strong>v1</strong>. All the endpoints are prefixed by <code>/v1</code>. It’s only available through HTTPS: it’s TLS, or nothing.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example:</p>
+
+<p><code>
+curl -X GET https://api.scalingo.com/v1/apps
+</code></p>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="parameters">Parameters</h2>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h3 id="get-and-delete-endpoints">GET and DELETE endpoints</h3>
+
+<p>Parameters for GET and DELETE requests are known as <em>query parameters</em>, they are declared in the resource URL.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example:</p>
+
+<p><code>
+curl -X GET https://api.scalingo.com/v1/apps/name/events?page=2
+</code></p>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h3 id="postputpatch">POST/PUT/PATCH</h3>
+
+<p>For these types of request, parameters are not included as query parameters, they should be encoded as JSON with the following header: `Content-Type: ‘application/json’.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example:</p>
+
+<p><code>
+curl -X POST -H 'Content-Type: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "a-new-app"}}'
+</code></p>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="http-verbs">HTTP Verbs</h2>
+
+<p>The API is not perfectly RESTful, it is more REST-ish. It has been developed to
+be easy to use and instinctive, we’ll probably normalize in a second version.</p>
+
+<ul>
+  <li>HEAD		Can be issued against any resource to get just the HTTP header info.</li>
+  <li>GET		Get resources, nullipotent operation (no matter how many times you call it, there is no side effect).</li>
+  <li>POST		Used for creating resources. (creation of a new app, or to create an environment variable)</li>
+  <li>PATCH		Update part of resources, as the value of an environment variable.</li>
+  <li>PUT		Update complete resources.</li>
+  <li>DELETE	Used for deleting items. Nullipotent operation (as GET)</li>
+</ul>
+</div></div>
