@@ -36,30 +36,31 @@ layout: default
 </table>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
-<p><code>GET https://api.scalingo.com/v1/apps/[:app]/addons</code></p>
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]/addons</code></p>
 
-<p><code>
-curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/addons
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/addons
+</code></pre>
+</div>
 
-<p>Returns 200 Created
-<code>json
- "id" : "5415beca646173000b0b0000",
-{
-    "addons": [{
-         "plan" : {
-            "description" : "* Free plan\r\n* No backups (you can do it yourself)\r\n* 64MB RAM\r\n* 64MB disk space (hard limit)\r\n* Multiple Users\r\n* Community Support\r\n* Ideal for non critical cache or queueing system",
-            "display_name" : "64MB Free tier",
-            "id" : "52fd2357356330000b080000",
-            "name" : "free",
-            "price" : 0
-         },
-         "resource_id" : "dashboard_3083",
-         "addon_provider" : {
-            "id" : "scalingo-redis",
-            "name" : "scalingo-redis"
-         }
-    }]
-}
-</code></p>
+<p>Returns 200 Created</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="w"> </span><span class="s2">"id"</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="s2">"5415beca646173000b0b0000"</span><span class="err">,</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"addons"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+         </span><span class="s2">"plan"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"description"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"* Free plan\r\n* No backups (you can do it yourself)\r\n* 64MB RAM\r\n* 64MB disk space (hard limit)\r\n* Multiple Users\r\n* Community Support\r\n* Ideal for non critical cache or queueing system"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"display_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"64MB Free tier"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"52fd2357356330000b080000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"resource_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dashboard_3083"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"addon_provider"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"scalingo-redis"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"scalingo-redis"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 </div></div>

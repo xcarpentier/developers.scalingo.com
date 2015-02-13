@@ -63,12 +63,12 @@ Dir.glob(files).each{|input_filename|
 
     row_transformed = ""
     row_transformed << sidebar_text_begin_tag
-    row_transformed << Kramdown::Document.new(ary_of_cols.first).to_html
+    row_transformed << Kramdown::Document.new(ary_of_cols.first, input: "GFM", syntax_highlighter: 'rouge').to_html
     row_transformed << sidebar_text_end_tag
 
     ary_of_cols << "" if ary_of_cols.size == 1
     row_transformed << sidebar_code_begin_tag
-    row_transformed << Kramdown::Document.new(ary_of_cols.last).to_html
+    row_transformed << Kramdown::Document.new(ary_of_cols.last, input: "GFM", syntax_highlighter: 'rouge').to_html
     row_transformed << sidebar_code_end_tag
 
     row_transformed
