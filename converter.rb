@@ -15,22 +15,22 @@ def doc_for(content)
   Nokogiri::HTML::DocumentFragment.parse(html)
 end
 
-def toc_link(heading)
+def toc_link(heading, output_filename)
   heading_id = heading[:id] || "#"
-  content_tag(:a, heading.text, href: "#" + heading_id)
+  content_tag(:a, heading.text, href: output_filename + "#" + heading_id)
 end
 
-def toc_item(heading)
-  content_tag(:li, toc_link(heading))
+def toc_item(heading, output_filename)
+  content_tag(:li, toc_link(heading, output_filename))
 end
 
 def heading_nodes(content, element_type = 'h2')
   doc_for(content).css(element_type)
 end
 
-def table_of_contents(content)
+def table_of_contents(content, output_filename)
   list = heading_nodes(content).map do |heading|
-    toc_item(heading)
+    toc_item(heading, output_filename)
   end.join
   content_tag(:ul, list, class: "list-unstyled")
 end
@@ -66,11 +66,10 @@ Dir.glob(files).each{|input_filename|
     row_transformed << Kramdown::Document.new(ary_of_cols.first).to_html
     row_transformed << sidebar_text_end_tag
 
-    if ary_of_cols.size > 1
-      row_transformed << sidebar_code_begin_tag
-      row_transformed << Kramdown::Document.new(ary_of_cols.last).to_html
-      row_transformed << sidebar_code_end_tag
-    end
+    ary_of_cols << "" if ary_of_cols.size == 1
+    row_transformed << sidebar_code_begin_tag
+    row_transformed << Kramdown::Document.new(ary_of_cols.last).to_html
+    row_transformed << sidebar_code_end_tag
 
     row_transformed
   }
@@ -78,7 +77,7 @@ Dir.glob(files).each{|input_filename|
   text_transformed = row_begin_tag + ary_of_rows_transformed.join(row_end_tag + row_begin_tag) + row_end_tag
 
   File.open("_includes/#{basename}_toc.html", "w+") do |f|
-    f.puts table_of_contents(text_transformed)
+    f.puts table_of_contents(text_transformed, output_filename)
   end
 
   unless basename == "index"
