@@ -7,6 +7,9 @@ body
   color: #212121
   font-family: 'Open Sans', sans-serif
 
+h1, .h1, h2, .h2, h3, .h3, h4, .h4
+  font-family: 'Roboto', sans-serif
+
 pre
   border: 0
   background-color: #272822
@@ -45,6 +48,9 @@ code
   .sidebar-code
     background-color: #272822
     color: white
+  > .row:last-child
+    .sidebar-text, .sidebar-code
+      padding-bottom: 100px
 
 @media (min-width: 768px)
   .sidebar-nav

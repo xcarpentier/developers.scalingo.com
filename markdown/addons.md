@@ -2,11 +2,7 @@
 
 --- row ---
 
-## List app addons
-
---- row ---
-
-**App addon**
+**App addon attributes**
 
 {:.table}
 | field          | type                                          |
@@ -15,11 +11,19 @@
 | resource_id    | resource reference                            |
 | addon_provider | embedded reference to AddonProvider resource  |
 
-||| col |||
+--- row ---
+
+## List app addons
+
+--- row ---
 
 `GET https://api.scalingo.com/v1/apps/[:app]/addons`
 
-```
+||| col |||
+
+Example
+
+```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/addons
 ```
 
