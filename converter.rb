@@ -24,7 +24,7 @@ def toc_item(heading, output_filename)
   content_tag(:li, toc_link(heading, output_filename))
 end
 
-def heading_nodes(content, element_type = 'h2')
+def heading_nodes(content, element_type = 'h1')
   doc_for(content).css(element_type)
 end
 

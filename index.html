@@ -6,7 +6,7 @@ layout: default
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h2 id="summary">Summary</h2>
+<h2 id="introduction">Introduction</h2>
 
 <p>The current API version is the <strong>v1</strong>. All the endpoints are prefixed by <code class="highlighter-rouge">/v1</code>. It’s only available through HTTPS: it’s TLS, or nothing.</p>
 
@@ -59,5 +59,186 @@ be easy to use and instinctive, we’ll probably normalize in a second version.<
   <li>PUT		Update complete resources.</li>
   <li>DELETE	Used for deleting items. Nullipotent operation (as GET)</li>
 </ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h1 id="authentication">Authentication</h1>
+
+<p>The authentication to the API is done thanks to an authentication token and<br />
+Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="get-an-authentication-token">Get an authentication token</h2>
+
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/users/sign_in</code></p>
+
+<p>Parameters:<br />
+* <code class="highlighter-rouge">user.login</code>: Email of your account<br />
+* <code class="highlighter-rouge">user.password</code>: Password or your account</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Return 201 Created</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"authentication_token"</span><span class="p">:</span><span class="s2">"abcdef0123456789-"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="make-an-authenticated-request">Make an authenticated request</h2>
+
+<p>HTTP requests have to be authenticated with HTTP basic auth, with the authentication token as<br />
+password, the username can be empty.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -u <span class="s2">":</span><span class="nv">$AUTH_TOKEN</span><span class="s2">"</span> -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> https://api.scalingo.com/v1/apps
+</code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h1 id="data-format">Data format</h1>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="json">JSON</h2>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p>The API sends and receives JSON, XML is not accepted, please ensure JSON is used.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="dates">Dates</h2>
+
+<p>All the dates are sent with the ISO 8601: YYYY-MM-DDThh:mm:ss.μμμZ</p>
+
+<p>Example:</p>
+
+<p>2015-01-13T09:20:31.123+01:00</p>
+
+<p>This format is commonly understood here are some examples:</p>
+
+<p>Javascript:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">"2015-01-13T09:20:31.123+01:00"</span><span class="p">)</span>
+<span class="nx">Tue</span> <span class="nx">Jan</span> <span class="mi">13</span> <span class="mi">2015</span> <span class="mi">09</span><span class="err">:</span><span class="mi">20</span><span class="err">:</span><span class="mi">31</span> <span class="nx">GMT</span><span class="o">+</span><span class="mi">0100</span> <span class="p">(</span><span class="nx">CET</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Ruby:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'date'</span>
+<span class="no">DateTime</span><span class="p">.</span><span class="nf">iso8601</span><span class="p">(</span><span class="s2">"2015-01-13T09:20:31.123+01:00"</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="c1">#&lt;DateTime: 2015-01-13T09:20:31+01:00 ((2457036j,30031s,123000000n),+3600s,2299161j)&gt;</span>
+</code></pre>
+</div>
+
+<p>Go:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">date</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">time</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">RFC3339Nano</span><span class="p">,</span><span class="x"> </span><span class="s">"2015-01-13T09:20:31.123+01:00"</span><span class="p">)</span><span class="x">
+</span><span class="n">fmt</span><span class="o">.</span><span class="n">Println</span><span class="p">(</span><span class="n">date</span><span class="p">)</span><span class="x">
+
+</span><span class="c">// go run iso8601.go</span><span class="x">
+</span><span class="c">// 2015-01-13 09:20:31.123 +0100 CET</span><span class="x">
+</span></code></pre>
+</div>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h1 id="errors">Errors</h1>
+
+<h2 id="client-errors---status-codes-4xx">Client errors - Status codes: 4xx</h2>
+
+<ul>
+  <li>
+    <p>JSON is wrongly formatted - error 400:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/users/sign_in -d '{"user": {'
+</code></pre>
+    </div>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 400 Bad Request
+
+{ "error": "There was a problem in the JSON you submitted: 795: unexpected token at '{\"user\": {'" }
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Their is a missing field in JSON payload - error 422:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{}'
+</code></pre>
+    </div>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 422 Unprocessable Entity
+
+{ "errors": { "app": [ "missing field" ] } }
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>Invalid data were sent in the payload - error 422:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "AnotherApp"}}'
+</code></pre>
+    </div>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>HTTP/1.1 422 Unprocessable Entity
+
+{ "errors": { "name": [ "should contain only lowercap letters, digits and hyphens" ] } }
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h1 id="pagination">Pagination</h1>
+
+<p>Some resources are paginated provided by the platform API are paginated.<br />
+To ensure you can correctly handle it, metadata are added to the JSON of<br />
+the response.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="request-parameters">Request parameters</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">page</code>: Requested page number</li>
+  <li><code class="highlighter-rouge">per_page</code>: Number of entries per page.<br />
+Each resource has a maximum for this value to avoid oversized requests</li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="response-example">Response example</h2>
+
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]/events?page=4&amp;per_page=20</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+		</span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">}</span><span class="w">
+	</span><span class="p">],</span><span class="w">
+	</span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+		</span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+		</span><span class="s2">"prev_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+		</span><span class="s2">"next_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+		</span><span class="s2">"total_pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+		</span><span class="s2">"total_entries"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<blockquote>
+  <p><code class="highlighter-rouge">prev_page</code> and/or <code class="highlighter-rouge">next_page</code> are equal to <code class="highlighter-rouge">null</code> if there is no previous<br />
+or next page.</p>
+</blockquote>
+
+<p>This request returns the events 40 to 60.</p>
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 </div></div>
