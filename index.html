@@ -27,7 +27,7 @@ layout: default
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET https://api.scalingo.com/v1/apps/name/events?page=2
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET https://api.scalingo.com/v1/apps/name/events?page<span class="o">=</span>2
 </code></pre>
 </div>
 
@@ -39,7 +39,7 @@ layout: default
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "a-new-app"}}'
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> https://api.scalingo.com/v1/apps -d <span class="s1">'{"app": {"name": "a-new-app"}}'</span>
 </code></pre>
 </div>
 
@@ -69,9 +69,12 @@ Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted
 
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/users/sign_in</code></p>
 
-<p>Parameters:<br />
-* <code class="highlighter-rouge">user.login</code>: Email of your account<br />
-* <code class="highlighter-rouge">user.password</code>: Password or your account</p>
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">user.login</code>: Email of your account</li>
+  <li><code class="highlighter-rouge">user.password</code>: Password or your account</li>
+</ul>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Return 201 Created</p>
@@ -149,7 +152,7 @@ password, the username can be empty.</p>
   <li>
     <p>JSON is wrongly formatted - error 400:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/users/sign_in -d '{"user": {'
+    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> https://api.scalingo.com/v1/users/sign_in -d <span class="s1">'{"user": {'</span>
 </code></pre>
     </div>
 
@@ -162,7 +165,7 @@ password, the username can be empty.</p>
   <li>
     <p>Their is a missing field in JSON payload - error 422:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{}'
+    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> https://api.scalingo.com/v1/apps -d <span class="s1">'{}'</span>
 </code></pre>
     </div>
 
@@ -175,7 +178,7 @@ password, the username can be empty.</p>
   <li>
     <p>Invalid data were sent in the payload - error 422:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "AnotherApp"}}'
+    <div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> https://api.scalingo.com/v1/apps -d <span class="s1">'{"app": {"name": "AnotherApp"}}'</span>
 </code></pre>
     </div>
 

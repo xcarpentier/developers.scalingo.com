@@ -3,9 +3,9 @@
 #### List domain names for an app
 
 ```
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls
+curl -k -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls
 
-http --auth :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls
+http --auth :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls
 ```
 
 Returns 200 OK
@@ -33,10 +33,10 @@ Returns 200 OK
 #### Show a specific domain name of an app
 
 ```
-curl -k -H "Accept: application/json" -u :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls/[:url_id]
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls/[:url_id]
+curl -k -H "Accept: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls/[:url_id]
+curl -k -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls/[:url_id]
 
-http --auth :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls/[:url_id]
+http --auth :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls/[:url_id]
 ```
 
 Returns 200 OK
@@ -54,9 +54,9 @@ Returns 200 OK
 #### Unlink a domain name from an app
 
 ```
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X DELETE -u :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls/[:url_id]
+curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X DELETE -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls/[:url_id]
 
-http --auth :$AUTH_TOKEN DELETE http://localhost:3000/v1/apps/[:app_id]/urls/[:url_id]
+http --auth :$AUTH_TOKEN DELETE https://api.scalingo.com/v1/apps/[:app_id]/urls/[:url_id]
 ```
 
 Returns 204 No Content
@@ -64,9 +64,9 @@ Returns 204 No Content
 #### Create a domain name for an app __without__ SSL
 
 ```
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"url": {"name": "example.com"}}' -u :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls
+curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"url": {"name": "example.com"}}' -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls
 
-http --auth :$AUTH_TOKEN POST http://localhost:3000/v1/apps/[:app_id]/urls 'url:={"name":"example.com"}
+http --auth :$AUTH_TOKEN POST https://api.scalingo.com/v1/apps/[:app_id]/urls 'url:={"name":"example.com"}
 ```
 
 Returns 200 OK
@@ -84,9 +84,9 @@ Returns 200 OK
 #### Create a domain name for an app __with__ SSL
 
 ```
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"url": {"name": "example.com", "tlscert": "<cert>", tlskey: "<key>"}}' -u :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls
+curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"url": {"name": "example.com", "tlscert": "<cert>", tlskey: "<key>"}}' -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls
 
-http --auth :$AUTH_TOKEN POST http://localhost:3000/v1/apps/[:app_id]/urls 'url:={"name":"example.com", "tlscert":"<cert>", "tlskey":"<key>"}'
+http --auth :$AUTH_TOKEN POST https://api.scalingo.com/v1/apps/[:app_id]/urls 'url:={"name":"example.com", "tlscert":"<cert>", "tlskey":"<key>"}'
 ```
 
 If the certificate or the key is not valid, a 422 "unprocessable entity" is returned
@@ -108,9 +108,9 @@ Otherwise return 201
 #### Update a domain name (SSL certificate only, no update of name)
 
 ```
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X PATCH -d '{"url": { "tlscert": "<cert>", "tlskey": "<key>"}}' -u :$AUTH_TOKEN http://localhost:3000/v1/apps/[:app_id]/urls/[:url_id]
+curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X PATCH -d '{"url": { "tlscert": "<cert>", "tlskey": "<key>"}}' -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app_id]/urls/[:url_id]
 
-http --auth :$AUTH_TOKEN PATCH http://localhost:3000/v1/apps/[:app_id]/urls/[:url_id] 'url:={"tlscert": "<cert>", "tlskey":"<key>"}'
+http --auth :$AUTH_TOKEN PATCH https://api.scalingo.com/v1/apps/[:app_id]/urls/[:url_id] 'url:={"tlscert": "<cert>", "tlskey":"<key>"}'
 ```
 
 Returns 200 OK
