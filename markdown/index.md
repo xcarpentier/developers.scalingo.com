@@ -10,7 +10,7 @@ The current API version is the __v1__. All the endpoints are prefixed by `/v1`. 
 
 Example:
 
-```
+```shell
 curl -X GET https://api.scalingo.com/v1/apps
 ```
 
@@ -28,7 +28,7 @@ Parameters for GET and DELETE requests are known as _query parameters_, they are
 
 Example:
 
-```
+```shell
 curl -X GET https://api.scalingo.com/v1/apps/name/events?page=2
 ```
 
@@ -42,7 +42,7 @@ For these types of request, parameters are not included as query parameters, the
 
 Example:
 
-```
+```shell
 curl -X POST -H 'Content-Type: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "a-new-app"}}'
 ```
 
@@ -74,6 +74,7 @@ Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted
 `POST https://api.scalingo.com/v1/users/sign_in`
 
 Parameters:
+
 * `user.login`: Email of your account
 * `user.password`: Password or your account
 
@@ -159,7 +160,7 @@ fmt.Println(date)
 
 * JSON is wrongly formatted - error 400:
 
-  ```
+  ```shell
   curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/users/sign_in -d '{"user": {'
   ```
 
@@ -171,7 +172,7 @@ fmt.Println(date)
 
 * Their is a missing field in JSON payload - error 422:
 
-  ```
+  ```shell
   curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{}'
   ```
 
@@ -183,7 +184,7 @@ fmt.Println(date)
 
 * Invalid data were sent in the payload - error 422:
 
-  ```
+  ```shell
   curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "AnotherApp"}}'
   ```
 
