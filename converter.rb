@@ -43,6 +43,7 @@ row_end_tag   = "</div>"
 sidebar_text_begin_tag = "<div class='col-xs-12 col-sm-6 sidebar-text'>"
 sidebar_text_end_tag   = "</div>"
 sidebar_code_begin_tag = "<div class='col-xs-12 col-sm-6 sidebar-code'>"
+sidebar_code_begin_tag_alt = "<div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'>"
 sidebar_code_end_tag   = "</div>"
 
 list_of_resources = {}
@@ -66,10 +67,14 @@ Dir.glob(files).each{|input_filename|
     row_transformed << Kramdown::Document.new(ary_of_cols.first, input: "GFM", syntax_highlighter: 'rouge').to_html
     row_transformed << sidebar_text_end_tag
 
-    ary_of_cols << "" if ary_of_cols.size == 1
-    row_transformed << sidebar_code_begin_tag
-    row_transformed << Kramdown::Document.new(ary_of_cols.last, input: "GFM", syntax_highlighter: 'rouge').to_html
-    row_transformed << sidebar_code_end_tag
+    if ary_of_cols.size == 1
+      row_transformed << sidebar_code_begin_tag_alt
+      row_transformed << sidebar_code_end_tag
+    else
+      row_transformed << sidebar_code_begin_tag
+      row_transformed << Kramdown::Document.new(ary_of_cols.last, input: "GFM", syntax_highlighter: 'rouge').to_html
+      row_transformed << sidebar_code_end_tag
+    end
 
     row_transformed
   }

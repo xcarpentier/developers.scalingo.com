@@ -52,9 +52,15 @@ code
     top: 0
     display: block
   .main
+    padding-right: 0
     display: table
     > .row
       display: table-row
       > div[class*='col-']
         display: table-cell
         float: none
+
+@media (max-width: 767px)
+  .sidebar-code
+    padding-top: 15px
+    padding-bottom: 15px

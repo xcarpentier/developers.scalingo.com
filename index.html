@@ -4,8 +4,7 @@ layout: default
 
 <div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="global-information">Global information</h1>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="introduction">Introduction</h2>
 
 <p>The current API version is the <strong>v1</strong>. All the endpoints are prefixed by <code class="highlighter-rouge">/v1</code>. It’s only available through HTTPS: it’s TLS, or nothing.</p>
@@ -20,8 +19,7 @@ layout: default
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="parameters">Parameters</h2>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h3 id="get-and-delete-endpoints">GET and DELETE endpoints</h3>
 
 <p>Parameters for GET and DELETE requests are known as <em>query parameters</em>, they are declared in the resource URL.</p>
@@ -60,15 +58,13 @@ be easy to use and instinctive, we’ll probably normalize in a second version.<
   <li>DELETE	Used for deleting items. Nullipotent operation (as GET)</li>
 </ul>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="authentication">Authentication</h1>
 
 <p>The authentication to the API is done thanks to an authentication token and<br />
 Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted.</p>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="get-an-authentication-token">Get an authentication token</h2>
 
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/users/sign_in</code></p>
@@ -102,16 +98,13 @@ password, the username can be empty.</p>
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="data-format">Data format</h1>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="json">JSON</h2>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p>The API sends and receives JSON, XML is not accepted, please ensure JSON is used.</p>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="dates">Dates</h2>
 
 <p>All the dates are sent with the ISO 8601: YYYY-MM-DDThh:mm:ss.μμμZ</p>
@@ -147,8 +140,7 @@ password, the username can be empty.</p>
 </span></code></pre>
 </div>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="errors">Errors</h1>
 
 <h2 id="client-errors---status-codes-4xx">Client errors - Status codes: 4xx</h2>
@@ -195,16 +187,14 @@ password, the username can be empty.</p>
   </li>
 </ul>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="pagination">Pagination</h1>
 
 <p>Some resources are paginated provided by the platform API are paginated.<br />
 To ensure you can correctly handle it, metadata are added to the JSON of<br />
 the response.</p>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="request-parameters">Request parameters</h2>
 
 <ul>
@@ -213,8 +203,7 @@ the response.</p>
 Each resource has a maximum for this value to avoid oversized requests</li>
 </ul>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="response-example">Response example</h2>
 
 <p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]/events?page=4&amp;per_page=20</code></p>
@@ -240,5 +229,4 @@ or next page.</p>
 </blockquote>
 
 <p>This request returns the events 40 to 60.</p>
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-</div></div>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div>
