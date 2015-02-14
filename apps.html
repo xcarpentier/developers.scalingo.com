@@ -1,0 +1,113 @@
+---
+layout: default
+title: Applications
+---
+
+<div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="applications">Applications</h1>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="create-an-application">Create an application</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/apps</code></p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">app.name</code>: Should have between 6 and 32 lower case alphanumerical characters and hyphens,<br />
+it can’t have an hyphen at the beginning or at the end, nor two hyphens in a row.</li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -k -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> POST https://api.scalingo.com/v1/apps -d <span class="s1">'{ "app": {"name": "testapp"}}'</span>
+</code></pre>
+</div>
+
+<p>Returns 201 Created</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-10T10:17:52.690+02:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"git_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git@appsdeck.dev:testapp.git"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54100930736f7563d5030000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testapp"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54100245736f7563d5000000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-10T10:17:52.690+02:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"testapp.appsdeck.dev"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="list-your-applications">List your applications</h2>
+
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/apps</code></p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -k -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -X GET -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps
+
+http --auth :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"apps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myapp1"</span><span class="p">,</span><span class="w">
+      </span><span class="err">…</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myapp2"</span><span class="p">,</span><span class="w">
+      </span><span class="err">…</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="err">…</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="delete-an-application">Delete an application</h2>
+
+<p><code class="highlighter-rouge">DELETE https://api.scalingo.com/v1/apps/[:app]</code></p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">current_name</code>: As validation, should equal the name of the app</li>
+</ul>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="rename-an-application">Rename an application</h2>
+
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/rename</code></p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">current_name</code>: As validation, should equal the name of the app</li>
+  <li><code class="highlighter-rouge">new_name</code>: Target name of rename operation</li>
+</ul>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="transfer-ownership-of-an-app">Transfer ownership of an app</h2>
+
+<p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]</code></p>
+
+<p>Parameters</p>
+
+<ul>
+  <li><code class="highlighter-rouge">app.owner.email</code>: email of the new owner of the app, should be part of the collaborators</li>
+</ul>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div>
