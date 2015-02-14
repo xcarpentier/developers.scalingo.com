@@ -2,13 +2,7 @@
 
 --- row ---
 
-## List the events of an app
-
---- row ---
-
-With this list of events, you can reconstruct the timeline of an application.
-
-`GET https://api.scalingo.com/v1/apps/[:app]/events`
+**Event attributes**
 
 {:.table}
 | field      | type                                  |
@@ -19,6 +13,16 @@ With this list of events, you can reconstruct the timeline of an application.
 | type       | type of event (can be among delete_variable deployment edit_variable new_variable restart run scale) |
 | app_id     | unique ID of app the event belongs to |
 
+--- row ---
+
+## List the events of an app
+
+--- row ---
+
+With this list of events, you can reconstruct the timeline of an application.
+
+`GET https://api.scalingo.com/v1/apps/[:app]/events`
+
 > Feature: pagination
 
 ||| col |||
@@ -28,6 +32,8 @@ Example
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/events
 ```
+
+Returns 200 OK
 
 Response
 

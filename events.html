@@ -6,12 +6,7 @@ title: Events
 <div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="events">Events</h1>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h2 id="list-the-events-of-an-app">List the events of an app</h2>
-
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<p>With this list of events, you can reconstruct the timeline of an application.</p>
-
-<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]/events</code></p>
+<p><strong>Event attributes</strong></p>
 
 <table class="table">
   <thead>
@@ -44,6 +39,14 @@ title: Events
   </tbody>
 </table>
 
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="list-the-events-of-an-app">List the events of an app</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p>With this list of events, you can reconstruct the timeline of an application.</p>
+
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]/events</code></p>
+
 <blockquote>
   <p>Feature: pagination</p>
 </blockquote>
@@ -54,6 +57,8 @@ title: Events
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps/[:app]/events
 </code></pre>
 </div>
+
+<p>Returns 200 OK</p>
 
 <p>Response</p>
 
