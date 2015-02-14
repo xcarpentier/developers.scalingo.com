@@ -20,12 +20,16 @@
 
 `GET https://api.scalingo.com/v1/apps/[:app]/collaborators`
 
+List all the collabors of an app, except the owner. It also displays
+the state of the invitation of thoses collaborators.
+
 ||| col |||
 
-Example
+Example Request
 
 ```shell
-curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/collaborators
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+  -X GET -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/collaborators
 ```
 
 Returns 200 OK
@@ -57,6 +61,12 @@ Returns 200 OK
 
 `POST https://api.scalingo.com/v1/apps/[:app]/collaborators`
 
+This action will create an invitation to the given person. You can invite either
+someone with an account on Scalingo or someone new. In the second case, they will
+be able to access the application after creating their account.
+
+> Note: An email will be sent to the invited user.
+
 Parameters:
 
 * `collaborator.email`: Email address of the collaborator to invite
@@ -64,7 +74,16 @@ Parameters:
 ||| col |||
 
 ```shell
-curl -H "Accept: application/json" -H "Content-Type: application/json" -X POST -d '{"collaborator": {"email":"test@test.com"}}' -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/collaborators
+
+Example Request
+
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+  -X POST -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/collaborators -d \
+  '{
+     "collaborator": {
+       "email":"test@test.com"
+      }
+   }' 
 ```
 
 Returns 201 Created
@@ -82,5 +101,25 @@ Returns 201 Created
 }
 ```
 
-Notes: Send an email to the invited collaborator
+--- row ---
 
+## Delete a collaborator
+
+--- row ---
+
+`DELETE https://api.scalingo.com/v1/apps/[:app]/collaborators/[:collaborator_id]`
+
+This action completely remove a collaborator from an app. Only the owner of the app
+can execute it. The user won't be able to access, nor to deploy it.
+
+||| col |||
+
+```shell
+
+Example Request
+
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+  -X DELETE -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps/[:app]/collaborators/54101e25736f7563d5060000
+```
+
+Returns 204 No Content
