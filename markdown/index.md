@@ -226,7 +226,7 @@ the response.
 		"prev_page": 3,
 		"next_page": 5,
 		"total_pages": 12,
-		"total_entries": 240
+		"total_count": 240
 	}
 }
 ```
