@@ -8,6 +8,7 @@
 
 **App addon**
 
+{:.table}
 | field          | type                                          |
 | -------------- | --------------------------------------------- |
 | plan           | embedded reference to Plan resource           |
