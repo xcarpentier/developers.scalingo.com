@@ -94,6 +94,7 @@ Dir.glob(files).each{|input_filename|
   File.open(output_filename, "w+") do |f|
     f.puts '---'
     f.puts 'layout: default'
+    f.puts "title: #{ resource_name }" if resource_name
     f.puts '---'
     f.puts ''
     f.puts text_transformed
