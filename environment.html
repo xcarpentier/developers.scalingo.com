@@ -5,6 +5,8 @@ title: Environment variable
 
 <div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="environment-variable">Environment variable</h1>
 
+<p>We do not automatically restart your application when you create/update/delete an environment variable, you have to do it yourself when all the modifications have been done. Look at the <a href="/apps.html#restart-an-application">‘restart application’</a> endpoint.</p>
+
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><strong>Environment variable attributes</strong></p>
 
@@ -37,10 +39,35 @@ title: Environment variable
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]/variables</code></p>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-<p>Example</p>
+<p>All the variables are returned, without interpolating anything.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -X GET -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps/[:app]/variables
+<p>Parameters:</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">aliases</code>: (default: <code class="highlighter-rouge">true</code>)</p>
+
+    <p>true:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>SCALINGO_MONGO_URL=mongodb://user:password@host:port/db
+DATABASE_URL=$SCALINGO_MONGO_URL
+</code></pre>
+    </div>
+
+    <p><code class="highlighter-rouge">false</code>:</p>
+
+    <div class="highlighter-rouge"><pre class="highlight"><code>SCALINGO_MONGO_URL=mongodb://user:password@host:port/db
+DATABASE_URL=mongodb://user:password@host:port/db
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X GET -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps/example-app/variables
 </code></pre>
 </div>
 
@@ -72,9 +99,16 @@ title: Environment variable
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/variables</code></p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
-<p>Example</p>
+<p>Example request</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -X POST -d <span class="s1">'{"variable": {"name":"RAILS_ENV", "value":"production"}}'</span> -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps/[:app]/variables
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -X POST -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps/example-app/variables -d <span class="se">\</span>
+  <span class="s1">'{
+    "variable": {
+      "name":"RAILS_ENV",
+      "value":"production"
+    }
+  }'</span>
 </code></pre>
 </div>
 
@@ -85,8 +119,8 @@ title: Environment variable
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"variable"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541013a9736f7563d5050000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONGO_URL"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mongodb://user:password@host:port/db"</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RAILS_ENV"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"production"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -98,10 +132,18 @@ title: Environment variable
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]/variables/[:variable_id]</code></p>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-<p>Example</p>
+<p>Update an environment variable, only the value can be updated, if your want to change the name, create a new one.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -X PATCH -d <span class="s1">'{"variable": {"value":"staging"}}'</span> -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps/[:app]/variables/[:variable_id]
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X PATCH https://api.scalingo.com/v1/apps/example-app/variables/54101384736f7563d5040000 -d <span class="se">\</span>
+  <span class="s1">'{
+     "variable": {
+       "value":"staging"
+     }
+  }'</span>
 </code></pre>
 </div>
 
@@ -125,10 +167,13 @@ title: Environment variable
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">DELETE https://api.scalingo.com/v1/apps/[:app]/variables/[:variable_id]</code></p>
 
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-<p>Example</p>
+<p>Delete definitively an environment variable of an app.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -X DELETE -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps/[:app]/variables/[:variable_id]
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X DELETE https://api.scalingo.com/v1/apps/example-app/variables/54101384736f7563d5040000
 </code></pre>
 </div>
 

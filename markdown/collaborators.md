@@ -7,10 +7,10 @@
 {:.table}
 | field          | type                                          |
 | -------------- | --------------------------------------------- |
-| id           | unique ID           |
-| email    | email address                            |
-| username | username ("N/A" if user has not chosen username yet or if invitation is still pending)  |
-| status | status of the collaborator (pending: invitation not yet accepted, accepted: invitation has been accepted and collaborator is *active*) |
+| id             | unique ID                                     |
+| email          | email address                                 |
+| username       | username ("N/A" if user has not chosen username yet or if invitation is still pending)  |
+| status         | status of the collaborator (pending: invitation not yet accepted, accepted: invitation has been accepted and collaborator is *active*) |
 
 --- row ---
 

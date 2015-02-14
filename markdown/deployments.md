@@ -7,22 +7,22 @@ The deployments information are available in read-only. They are populated when 
 **Deployment attributes**
 
 {:.table}
-| field          | type                                          |
-| -------------- | --------------------------------------------- |
-| id | unique ID |
-| app_id | unique ID referencing the app this deployment belongs to |
-| created_at | date of creation |
-| git_ref | git SHA |
-| pusher | embedded user who pushed the GIT reference |
+| field          | type                                                     |
+| -------------- | -------------------------------------------------------- |
+| id             | unique ID                                                |
+| app_id         | unique ID referencing the app this deployment belongs to |
+| created_at     | date of creation                                         |
+| git_ref        | git SHA                                                  |
+| pusher         | embedded user who pushed the GIT reference               |
 
 **Deployment pusher attributes**
 
 {:.table}
-| field          | type                                          |
-| -------------- | --------------------------------------------- |
-| id | unique ID |
-| email | email of user who pushed |
-| username | username on Scalingo's platform |
+| field          | type                            |
+| -------------- | --------------------------------|
+| id             | unique ID                       |
+| email          | email of user who pushed        |
+| username       | username on Scalingo's platform |
 
 --- row ---
 
