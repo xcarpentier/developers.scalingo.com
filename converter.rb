@@ -28,8 +28,8 @@ def heading_nodes(content, element_type = 'h1')
   doc_for(content).css(element_type)
 end
 
-def table_of_contents(content, output_filename)
-  list = heading_nodes(content).map do |heading|
+def table_of_contents(content, output_filename, tag = 'h2')
+  list = heading_nodes(content, tag).map do |heading|
     toc_item(heading, output_filename)
   end.join
   content_tag(:ul, list, class: "list-unstyled")
@@ -77,7 +77,8 @@ Dir.glob(files).each{|input_filename|
   text_transformed = row_begin_tag + ary_of_rows_transformed.join(row_end_tag + row_begin_tag) + row_end_tag
 
   File.open("_includes/#{basename}_toc.html", "w+") do |f|
-    f.puts table_of_contents(text_transformed, output_filename)
+    tag = basename == "index" ? 'h1' : 'h2'
+    f.puts table_of_contents(text_transformed, output_filename, tag)
   end
 
   unless basename == "index"
@@ -96,6 +97,7 @@ Dir.glob(files).each{|input_filename|
 
 File.open("_includes/list_of_resources.html", "w+") do |f|
   list_of_resources.each{|resource_name, output_filename|
-    f.puts "<li><a href='#{output_filename}'>#{resource_name}</a></li>"
+    basename = File.basename output_filename, ".html"
+    f.puts "<li class='resource'><a href='#{output_filename}'><strong>#{resource_name}</strong></a>{% if page.path == '#{output_filename}' %}{% include #{basename}_toc.html %}{% endif %}</li>"
   }
 end
