@@ -65,4 +65,52 @@ title: Addons
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="provision-an-addon">Provision an addon</h2>
+
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/addons</code></p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">addon.addon_provider_id</code></li>
+  <li><code class="highlighter-rouge">addon.plan_id</code></li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST https://api.scalingo.com/v1/apps/[:app]/addons <span class="se">\</span>
+  -d <span class="s1">'{"addon":{"plan_id": "1234", "addon_provider_id": "1234"}}'</span>
+</code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="upgrade-an-addon">Upgrade an addon</h2>
+
+<p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id]</code></p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">addon.plan_id</code></li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] <span class="se">\</span>
+  -d <span class="s1">'{"addon": {"plan_id": "2"}}'</span>
+</code></pre>
+</div>
+
+<p>Response:</p>
+
+<p>200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"VAR1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"VAR2"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;custom message from the addon provider&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 </div></div>

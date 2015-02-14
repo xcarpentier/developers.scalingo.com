@@ -48,3 +48,51 @@ Returns 200 Created
     }]
 }
 ```
+
+--- row ---
+
+## Provision an addon
+
+`POST https://api.scalingo.com/v1/apps/[:app]/addons`
+
+Parameters:
+
+* `addon.addon_provider_id`
+* `addon.plan_id`
+
+||| col |||
+
+```shell
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST https://api.scalingo.com/v1/apps/[:app]/addons \
+  -d '{"addon":{"plan_id": "1234", "addon_provider_id": "1234"}}'
+```
+
+--- row ---
+
+## Upgrade an addon
+
+`PATCH https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id]`
+
+Parameters:
+
+* `addon.plan_id`
+
+||| col |||
+
+```shell
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] \
+  -d '{"addon": {"plan_id": "2"}}'
+```
+
+Response:
+
+200 OK
+
+```json
+{
+  "vars": ["VAR1", "VAR2"],
+  "message": "<custom message from the addon provider>"
+}
+```
