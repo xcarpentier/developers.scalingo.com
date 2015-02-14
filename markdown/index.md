@@ -8,10 +8,10 @@ The current API version is the __v1__. All the endpoints are prefixed by `/v1`. 
 
 ||| col |||
 
-Example:
+Base URL:
 
-```shell
-curl -X GET https://api.scalingo.com/v1/apps
+```
+https://api.scalingo.com/v1/
 ```
 
 --- row ---
