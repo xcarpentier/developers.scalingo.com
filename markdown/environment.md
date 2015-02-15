@@ -1,4 +1,4 @@
-# Environment variable
+# Environment variables
 
 We do not automatically restart your application when you create/update/delete an environment variable, you have to do it yourself when all the modifications have been done. Look at the ['restart application'](/apps.html#restart-an-application) endpoint.
 
