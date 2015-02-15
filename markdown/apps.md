@@ -18,7 +18,13 @@ Parameters:
 Example
 
 ```sh
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN POST https://api.scalingo.com/v1/apps -d '{ "app": {"name": "testapp"}}'
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST https://api.scalingo.com/v1/apps -d \
+  '{
+    "app": {
+      "name": "example-app"
+    }
+  }'
 ```
 
 Returns 201 Created
@@ -27,9 +33,9 @@ Returns 201 Created
 {
     "app": {
         "created_at": "2014-09-10T10:17:52.690+02:00",
-        "git_url": "git@appsdeck.dev:testapp.git",
+        "git_url": "git@scalingo.com:example-app.git",
         "id": "54100930736f7563d5030000",
-        "name": "testapp",
+        "name": "example-app",
         "owner": {
             "username": "john",
             "email": "user@example.com",
@@ -37,7 +43,7 @@ Returns 201 Created
         },
         "updated_at": "2014-09-10T10:17:52.690+02:00",
         "urls": [
-            "testapp.appsdeck.dev"
+            "example-app.scalingo.io"
         ]
     }
 }
@@ -54,9 +60,8 @@ Returns 201 Created
 Example
 
 ```shell
-curl -k -H "Accept: application/json" -H "Content-Type: application/json" -X GET -u :$AUTH_TOKEN https://api.scalingo.com/v1/apps
-
-http --auth :$AUTH_TOKEN https://api.scalingo.com/v1/apps
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X GET https://api.scalingo.com/v1/apps
 ```
 
 Returns 200 OK
@@ -65,10 +70,10 @@ Returns 200 OK
 {
   "apps": [
     {
-      "name": "myapp1",
+      "name": "example-app",
       …
     }, {
-      "name": "myapp2",
+      "name": "another-app",
       …
     }, …
   ]
@@ -85,6 +90,17 @@ Parameters:
 
 * `current_name`: As validation, should equal the name of the app
 
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X DELETE 'https://api.scalingo.com/v1/apps/example-app?current_name=example-app'
+```
+
+Returns 204 No Content
+
 --- row ---
 
 ## Rename an application
@@ -96,6 +112,30 @@ Parameters:
 * `current_name`: As validation, should equal the name of the app
 * `new_name`: Target name of rename operation
 
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST 'https://api.scalingo.com/v1/apps/example-app' -d \
+  '{
+    "current_name": "example-app",
+    "new_name": "renamed-example-app"
+  }'
+```
+
+Returns 200 OK
+
+```json
+{
+  "app": {
+    "name": "renamed_example-app",
+    ...
+  }
+}
+```
+
 --- row ---
 
 ## Transfer ownership of an app
@@ -105,3 +145,30 @@ Parameters:
 Parameters
 
 * `app.owner.email`: email of the new owner of the app, should be part of the collaborators
+
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X PATCH 'https://api.scalingo.com/v1/apps/example-app' -d \
+  '{
+    "app": {
+      "owner": {
+        "email": "user2@example.com"
+      }
+    }
+  }'
+```
+
+Returns 200 OK
+
+```json
+{
+  "app": {
+    "name": "example-app",
+    ...
+  }
+}
+```

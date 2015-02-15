@@ -21,7 +21,13 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -k -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> POST https://api.scalingo.com/v1/apps -d <span class="s1">'{ "app": {"name": "testapp"}}'</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST https://api.scalingo.com/v1/apps -d <span class="se">\</span>
+  <span class="s1">'{
+    "app": {
+      "name": "example-app"
+    }
+  }'</span>
 </code></pre>
 </div>
 
@@ -30,9 +36,9 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-10T10:17:52.690+02:00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"git_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git@appsdeck.dev:testapp.git"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"git_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git@scalingo.com:example-app.git"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54100930736f7563d5030000"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testapp"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-app"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
@@ -40,7 +46,7 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-10T10:17:52.690+02:00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"testapp.appsdeck.dev"</span><span class="w">
+            </span><span class="s2">"example-app.scalingo.io"</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -55,9 +61,8 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -k -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -X GET -u :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps
-
-http --auth :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/apps
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X GET https://api.scalingo.com/v1/apps
 </code></pre>
 </div>
 
@@ -66,10 +71,10 @@ http --auth :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/app
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"apps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myapp1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-app"</span><span class="p">,</span><span class="w">
       </span><span class="err">…</span><span class="w">
     </span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"myapp2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"another-app"</span><span class="p">,</span><span class="w">
       </span><span class="err">…</span><span class="w">
     </span><span class="err">}</span><span class="p">,</span><span class="w"> </span><span class="err">…</span><span class="w">
   </span><span class="p">]</span><span class="w">
@@ -88,7 +93,17 @@ http --auth :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/app
   <li><code class="highlighter-rouge">current_name</code>: As validation, should equal the name of the app</li>
 </ul>
 
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X DELETE <span class="s1">'https://api.scalingo.com/v1/apps/example-app?current_name=example-app'</span>
+</code></pre>
+</div>
+
+<p>Returns 204 No Content</p>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="rename-an-application">Rename an application</h2>
 
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/rename</code></p>
@@ -100,7 +115,30 @@ http --auth :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/app
   <li><code class="highlighter-rouge">new_name</code>: Target name of rename operation</li>
 </ul>
 
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST <span class="s1">'https://api.scalingo.com/v1/apps/example-app'</span> -d <span class="se">\</span>
+  <span class="s1">'{
+    "current_name": "example-app",
+    "new_name": "renamed-example-app"
+  }'</span>
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"renamed_example-app"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="transfer-ownership-of-an-app">Transfer ownership of an app</h2>
 
 <p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]</code></p>
@@ -110,4 +148,30 @@ http --auth :<span class="nv">$AUTH_TOKEN</span> https://api.scalingo.com/v1/app
 <ul>
   <li><code class="highlighter-rouge">app.owner.email</code>: email of the new owner of the app, should be part of the collaborators</li>
 </ul>
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X PATCH <span class="s1">'https://api.scalingo.com/v1/apps/example-app'</span> -d <span class="se">\</span>
+  <span class="s1">'{
+    "app": {
+      "owner": {
+        "email": "user2@example.com"
+      }
+    }
+  }'</span>
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-app"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+</div></div>
