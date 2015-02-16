@@ -80,6 +80,19 @@ Parameters:
 
 ||| col |||
 
+Example request:
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+ -X POST https://api.scalingo.com/v1/users/sign_in -d \
+ '{
+   "user": {
+     "login": "user@example.com",
+     "password": "example-secret"
+   }
+ }'
+```
+
 Return 201 Created
 
 ```json
@@ -97,10 +110,11 @@ password, the username can be empty.
 
 ||| col |||
 
-Example:
+Example request:
 
 ```sh
-curl -u ":$AUTH_TOKEN" -H "Accept: application/json" -H "Content-Type: application/json" https://api.scalingo.com/v1/apps
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u ":$AUTH_TOKEN" \
+ -X GET https://api.scalingo.com/v1/apps
 ```
 
 --- row ---
@@ -123,9 +137,11 @@ All the dates are sent with the ISO 8601: YYYY-MM-DDThh:mm:ss.μμμZ
 
 Example:
 
-2015-01-13T09:20:31.123+01:00
+__2015-01-13T09:20:31.123+01:00__
 
-This format is commonly understood here are some examples:
+This format is commonly understood, here are some examples:
+
+||| col |||
 
 Javascript:
 
@@ -145,54 +161,92 @@ DateTime.iso8601("2015-01-13T09:20:31.123+01:00")
 Go:
 
 ```go
+/*
+ * go run iso8601.go
+ * 2015-01-13 09:20:31.123 +0100 CET
+ */
 date, _ := time.Parse(time.RFC3339Nano, "2015-01-13T09:20:31.123+01:00")
 fmt.Println(date)
-
-// go run iso8601.go
-// 2015-01-13 09:20:31.123 +0100 CET
 ```
 
 --- row ---
 
 # Errors
 
-## Client errors - Status codes: 4xx
+### Client errors - Status codes: 4xx
 
-* JSON is wrongly formatted - error 400:
+--- row ---
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/users/sign_in -d '{"user": {'
-  ```
+* JSON is wrongly formatted - error 400
 
-  ```
-  HTTP/1.1 400 Bad Request
+||| col |||
 
-  { "error": "There was a problem in the JSON you submitted: 795: unexpected token at '{\"user\": {'" }
-  ```
+```shell
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -u ":$AUTH_TOKEN" \ 
+  -X POST https://api.scalingo.com/v1/users/sign_in -d '{"user": {'
+```
 
-* Their is a missing field in JSON payload - error 422:
+Returns HTTP/1.1 400 Bad Request
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{}'
-  ```
+```json
+{
+  "error" : "There was a problem in the JSON you submitted: 795: unexpected token at '{\"user\": {'"
+}
+```
 
-  ```
-  HTTP/1.1 422 Unprocessable Entity
+--- row ---
 
-  { "errors": { "app": [ "missing field" ] } }
-  ```
+* Their is a missing field in JSON payload - error 422
 
-* Invalid data were sent in the payload - error 422:
+||| col |||
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "AnotherApp"}}'
-  ```
+```shell
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -u ":$AUTH_TOKEN" \
+  -X POST https://api.scalingo.com/v1/apps -d '{}'
+```
 
-  ```
-  HTTP/1.1 422 Unprocessable Entity
+Returns HTTP/1.1 422 Unprocessable Entity
 
-  { "errors": { "name": [ "should contain only lowercap letters, digits and hyphens" ] } }
-  ```
+```json
+{
+  "errors" : {
+    "app": [ "missing field" ]
+  }
+}
+```
+
+--- row ---
+
+* Invalid data were sent in the payload - error 422
+
+||| col |||
+
+```shell
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -u ":$AUTH_TOKEN" \ 
+  -X POST https://api.scalingo.com/v1/apps -d \
+  '{
+    "app" : {
+      "name" : "AnotherApp"
+    }
+  }'
+```
+
+Returns HTTP/1.1 422 Unprocessable Entity
+
+```json
+{
+  "errors": {
+    "name": [ "should contain only lowercap letters, digits and hyphens" ]
+  }
+}
+```
+
+--- row ---
+
+### Server errors - 50x
+
+If the server returns a 50x status code, something wrong happened on our side. You can't do anything about, you can be sure that our team got notifications for it and that it will be fixed really quickly.
+
 
 --- row ---
 
@@ -210,11 +264,39 @@ the response.
 * `per_page`: Number of entries per page.
   Each resource has a maximum for this value to avoid oversized requests
 
---- row ---
+## Response meta values
 
-## Response example
+The returned JSON object will include a `meta` key including pagination metadata:
 
-`GET https://api.scalingo.com/v1/apps/[:app]/events?page=4&per_page=20`
+```json
+{
+  "meta": {
+    "pagination": {
+      "prev_page": "<previous page number>",
+      "current_page": "<requested page number>",
+      "next_page": "<next page number>",
+      "total_pages": "<total amount of pages>",
+      "total_count": "<total amount of items in the collection>"
+    }
+  }
+}
+```
+
+> `prev_page` and/or `next_page` are equal to `null` if there is no previous
+> or next page.
+
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X GET 'https://api.scalingo.com/v1/apps/example-app/events?page=4&per_page=20'
+```
+
+Returns 200 OK
+
+This request returns the events 40 to 60.
 
 ```json
 {
@@ -230,8 +312,3 @@ the response.
 	}
 }
 ```
-
-> `prev_page` and/or `next_page` are equal to `null` if there is no previous
-> or next page.
-
-This request returns the events 40 to 60.
