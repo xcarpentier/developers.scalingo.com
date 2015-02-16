@@ -10,8 +10,9 @@
 
 Parameters:
 
-* `app.name`: Should have between 6 and 32 lower case alphanumerical characters and hyphens,
-  it can't have an hyphen at the beginning or at the end, nor two hyphens in a row.
+* `app.name`: Should have between 6 and 32 lower case alphanumerical characters
+  and hyphens, it can't have an hyphen at the beginning or at the end, nor two
+  hyphens in a row.
 
 ||| col |||
 
@@ -138,11 +139,15 @@ Returns 200 OK
 
 `POST https://api.scalingo.com/v1/apps/[:app]/scale`
 
-Send a scaling request, the status of the application will be changed to 'scaling' for the scaling duration. No other operation is doable until the app status has switched to "running" again.  
+Send a scaling request, the status of the application will be changed to
+'scaling' for the scaling duration. No other operation is doable until the app
+status has switched to "running" again.  
 
-You can follow the operation progress by following the `Location` header, pointing to an `operation` resource.
+You can follow the operation progress by following the `Location` header,
+pointing to an `operation` resource.
 
-The request returns the complete formation of containers event those which are not currently scaled.
+The request returns the complete formation of containers event those which are
+not currently scaled.
 
 Parameters:
 
@@ -196,11 +201,15 @@ Headers:
 
 `POST https://api.scalingo.com/v1/apps[:app]/restart`
 
-In the same spirit than the 'scale' operation, the restart is an asynchronous operation
+In the same spirit than the 'scale' operation, the restart is an asynchronous
+operation
 
-Send a restart request, the status of the application will be changed to 'restarting' for the operation duration. No other operation is doable until the app status has switched to "running" again.
+Send a restart request, the status of the application will be changed to
+'restarting' for the operation duration. No other operation is doable until the
+app status has switched to "running" again.
 
-You can follow the operation progress by following the `Location` header, pointing to an `operation` resource.
+You can follow the operation progress by following the `Location` header,
+pointing to an `operation` resource.
 
 Parameters:
 
@@ -286,7 +295,8 @@ Returns 200 OK
 
 Parameters
 
-* `app.owner.email`: email of the new owner of the app, should be part of the collaborators
+* `app.owner.email`: email of the new owner of the app, should be part of the
+  collaborators
 
 ||| col |||
 

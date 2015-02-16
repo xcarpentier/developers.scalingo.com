@@ -61,9 +61,9 @@ Returns 200 OK
 
 `POST https://api.scalingo.com/v1/apps/[:app]/collaborators`
 
-This action will create an invitation to the given person. You can invite either
-someone with an account on Scalingo or someone new. In the second case, they will
-be able to access the application after creating their account.
+This action will create an invitation to the given person. You can invite
+either someone with an account on Scalingo or someone new. In the second case,
+they will be able to access the application after creating their account.
 
 > Note: An email will be sent to the invited user.
 
@@ -109,8 +109,8 @@ Returns 201 Created
 
 `DELETE https://api.scalingo.com/v1/apps/[:app]/collaborators/[:collaborator_id]`
 
-This action completely remove a collaborator from an app. Only the owner of the app
-can execute it. The user won't be able to access, nor to deploy it.
+This action completely remove a collaborator from an app. Only the owner of the
+app can execute it. The user won't be able to access, nor to deploy it.
 
 ||| col |||
 

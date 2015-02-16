@@ -14,8 +14,9 @@ title: Applications
 <p>Parameters:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">app.name</code>: Should have between 6 and 32 lower case alphanumerical characters and hyphens,
-it can’t have an hyphen at the beginning or at the end, nor two hyphens in a row.</li>
+  <li><code class="highlighter-rouge">app.name</code>: Should have between 6 and 32 lower case alphanumerical characters
+and hyphens, it can’t have an hyphen at the beginning or at the end, nor two
+hyphens in a row.</li>
 </ul>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
@@ -135,11 +136,15 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/scale</code></p>
 
-<p>Send a scaling request, the status of the application will be changed to ‘scaling’ for the scaling duration. No other operation is doable until the app status has switched to “running” again.  </p>
+<p>Send a scaling request, the status of the application will be changed to
+‘scaling’ for the scaling duration. No other operation is doable until the app
+status has switched to “running” again.  </p>
 
-<p>You can follow the operation progress by following the <code class="highlighter-rouge">Location</code> header, pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
+<p>You can follow the operation progress by following the <code class="highlighter-rouge">Location</code> header,
+pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
 
-<p>The request returns the complete formation of containers event those which are not currently scaled.</p>
+<p>The request returns the complete formation of containers event those which are
+not currently scaled.</p>
 
 <p>Parameters:</p>
 
@@ -195,11 +200,15 @@ Headers:
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps[:app]/restart</code></p>
 
-<p>In the same spirit than the ‘scale’ operation, the restart is an asynchronous operation</p>
+<p>In the same spirit than the ‘scale’ operation, the restart is an asynchronous
+operation</p>
 
-<p>Send a restart request, the status of the application will be changed to ‘restarting’ for the operation duration. No other operation is doable until the app status has switched to “running” again.</p>
+<p>Send a restart request, the status of the application will be changed to
+‘restarting’ for the operation duration. No other operation is doable until the
+app status has switched to “running” again.</p>
 
-<p>You can follow the operation progress by following the <code class="highlighter-rouge">Location</code> header, pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
+<p>You can follow the operation progress by following the <code class="highlighter-rouge">Location</code> header,
+pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
 
 <p>Parameters:</p>
 
@@ -289,7 +298,8 @@ Headers:
 <p>Parameters</p>
 
 <ul>
-  <li><code class="highlighter-rouge">app.owner.email</code>: email of the new owner of the app, should be part of the collaborators</li>
+  <li><code class="highlighter-rouge">app.owner.email</code>: email of the new owner of the app, should be part of the
+collaborators</li>
 </ul>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>

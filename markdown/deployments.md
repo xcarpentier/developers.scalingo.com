@@ -1,6 +1,7 @@
 # Deployments
 
-The deployments information are available in read-only. They are populated when application are deployed.
+The deployments information are available in read-only. They are populated when
+application are deployed.
 
 --- row ---
 

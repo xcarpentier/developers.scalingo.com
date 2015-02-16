@@ -17,33 +17,6 @@ layout: default
 </div>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h2 id="parameters">Parameters</h2>
-
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h3 id="get-and-delete-endpoints">GET and DELETE endpoints</h3>
-
-<p>Parameters for GET and DELETE requests are known as <em>query parameters</em>, they are declared in the resource URL.</p>
-
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-<p>Example:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET https://api.scalingo.com/v1/apps/name/events?page<span class="o">=</span>2
-</code></pre>
-</div>
-
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h3 id="postputpatch">POST/PUT/PATCH</h3>
-
-<p>For these types of request, parameters are not included as query parameters, they should be encoded as JSON with the following header: `Content-Type: ‘application/json’.</p>
-
-</div><div class='col-xs-12 col-sm-6 sidebar-code'>
-<p>Example:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> https://api.scalingo.com/v1/apps -d <span class="s1">'{"app": {"name": "a-new-app"}}'</span>
-</code></pre>
-</div>
-
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="http-verbs">HTTP Verbs</h2>
 
 <p>The API is not perfectly RESTful, it is more REST-ish. It has been developed to
@@ -59,6 +32,41 @@ be easy to use and instinctive, we’ll probably normalize in a second version.<
 </ul>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="parameters">Parameters</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h3 id="get-and-delete-endpoints">GET and DELETE endpoints</h3>
+
+<p>Parameters for GET and DELETE requests are known as <em>query parameters</em>, they are declared in the resource URL.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET https://api.scalingo.com/v1/apps/name/events?page<span class="o">=</span>2
+</code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h3 id="postputpatch">POST/PUT/PATCH</h3>
+
+<p>For these types of request, parameters are not included as query parameters,
+they should be encoded as JSON with the following header: `Content-Type:
+‘application/json’.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s1">'Accept: application/json'</span> -H <span class="s1">'Content-Type: application/json'</span> -u <span class="s2">":</span><span class="nv">$AUTH_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  -X POST https://api.scalingo.com/v1/apps -d <span class="se">\</span>
+  <span class="s1">'{
+    "app": {
+      "name": "example-app"
+    }
+  }'</span>
+</code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="authentication">Authentication</h1>
 
 <p>The authentication to the API is done thanks to an authentication token and
@@ -101,8 +109,8 @@ Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="make-an-authenticated-request">Make an authenticated request</h2>
 
-<p>HTTP requests have to be authenticated with HTTP basic auth, with the authentication token as
-password, the username can be empty.</p>
+<p>HTTP requests have to be authenticated with HTTP basic auth, with the
+authentication token as password, the username can be empty.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example request:</p>
@@ -233,14 +241,16 @@ password, the username can be empty.</p>
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h3 id="server-errors---50x">Server errors - 50x</h3>
 
-<p>If the server returns a 50x status code, something wrong happened on our side. You can’t do anything about, you can be sure that our team got notifications for it and that it will be fixed really quickly.</p>
+<p>If the server returns a 50x status code, something wrong happened on our side.
+You can’t do anything about, you can be sure that our team got notifications
+for it and that it will be fixed really quickly.</p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="pagination">Pagination</h1>
 
-<p>Some resources are paginated provided by the platform API are paginated.
-To ensure you can correctly handle it, metadata are added to the JSON of
-the response.</p>
+<p>Some resources are paginated provided by the platform API are paginated. To
+ensure you can correctly handle it, metadata are added to the JSON of the
+response.</p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="request-parameters">Request parameters</h2>
@@ -253,7 +263,8 @@ Each resource has a maximum for this value to avoid oversized requests</li>
 
 <h2 id="response-meta-values">Response meta values</h2>
 
-<p>The returned JSON object will include a <code class="highlighter-rouge">meta</code> key including pagination metadata:</p>
+<p>The returned JSON object will include a <code class="highlighter-rouge">meta</code> key including pagination
+metadata:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">

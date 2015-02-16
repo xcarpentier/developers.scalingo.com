@@ -44,7 +44,8 @@
 
 `GET https://api.scalingo.com/v1/addon_providers`
 
-The endpoint return the list of the addons you can provision for your app, including the different available plans.
+The endpoint return the list of the addons you can provision for your app,
+including the different available plans.
 
 Parameters:
 

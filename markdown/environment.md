@@ -1,6 +1,9 @@
 # Environment variables
 
-We do not automatically restart your application when you create/update/delete an environment variable, you have to do it yourself when all the modifications have been done. Look at the ['restart application'](/apps.html#restart-an-application) endpoint.
+We do not automatically restart your application when you create/update/delete
+an environment variable, you have to do it yourself when all the modifications
+have been done. Look at the ['restart
+application'](/apps.html#restart-an-application) endpoint.
 
 --- row ---
 
@@ -116,7 +119,8 @@ Response
 
 `PATCH https://api.scalingo.com/v1/apps/[:app]/variables/[:variable_id]`
 
-Update an environment variable, only the value can be updated, if your want to change the name, create a new one.
+Update an environment variable, only the value can be updated, if your want to
+change the name, create a new one.
 
 ||| col |||
 

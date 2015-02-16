@@ -5,7 +5,10 @@ title: Environment variables
 
 <div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="environment-variables">Environment variables</h1>
 
-<p>We do not automatically restart your application when you create/update/delete an environment variable, you have to do it yourself when all the modifications have been done. Look at the <a href="/apps.html#restart-an-application">‘restart application’</a> endpoint.</p>
+<p>We do not automatically restart your application when you create/update/delete
+an environment variable, you have to do it yourself when all the modifications
+have been done. Look at the <a href="/apps.html#restart-an-application">‘restart
+application’</a> endpoint.</p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><strong>Environment variable attributes</strong></p>
@@ -132,7 +135,8 @@ DATABASE_URL=mongodb://user:password@host:port/db
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]/variables/[:variable_id]</code></p>
 
-<p>Update an environment variable, only the value can be updated, if your want to change the name, create a new one.</p>
+<p>Update an environment variable, only the value can be updated, if your want to
+change the name, create a new one.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example request</p>

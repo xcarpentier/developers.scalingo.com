@@ -1,5 +1,9 @@
 # SSH Keys
 
+SSH keys allow you to deploy their applications and to build encrypted tunnels
+to the application databases (command `db-tunnel` of our [CLI
+Tool](http://cli.scalingo.com)).
+
 --- row ---
 
 **Keys attributes**
@@ -20,9 +24,7 @@
 `GET https://api.scalingo.com/v1/account/keys`
 
 Return the list of all the public keys which are able to connect to the
-platform.  SSH keys allow you to deploy their applications and to build
-encrypted tunnels to the application databases (command `db-tunnel` of our
-[CLI Tool](http://cli.scalingo.com)).
+platform.
 
 ||| col |||
 

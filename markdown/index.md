@@ -16,38 +16,6 @@ https://api.scalingo.com/v1/
 
 --- row ---
 
-## Parameters
-
---- row ---
-
-### GET and DELETE endpoints
-
-Parameters for GET and DELETE requests are known as _query parameters_, they are declared in the resource URL.
-
-||| col |||
-
-Example:
-
-```shell
-curl -X GET https://api.scalingo.com/v1/apps/name/events?page=2
-```
-
---- row ---
-
-### POST/PUT/PATCH
-
-For these types of request, parameters are not included as query parameters, they should be encoded as JSON with the following header: `Content-Type: 'application/json'.
-
-||| col |||
-
-Example:
-
-```shell
-curl -X POST -H 'Content-Type: application/json' https://api.scalingo.com/v1/apps -d '{"app": {"name": "a-new-app"}}'
-```
-
---- row ---
-
 ## HTTP Verbs
 
 The API is not perfectly RESTful, it is more REST-ish. It has been developed to
@@ -59,6 +27,46 @@ be easy to use and instinctive, we'll probably normalize in a second version.
 * PATCH		Update part of resources, as the value of an environment variable.
 * PUT		Update complete resources.
 * DELETE	Used for deleting items. Nullipotent operation (as GET)
+
+--- row ---
+
+## Parameters
+
+--- row ---
+
+### GET and DELETE endpoints
+
+Parameters for GET and DELETE requests are known as _query parameters_, they are declared in the resource URL.
+
+||| col |||
+
+Example request:
+
+```shell
+curl -X GET https://api.scalingo.com/v1/apps/name/events?page=2
+```
+
+--- row ---
+
+### POST/PUT/PATCH
+
+For these types of request, parameters are not included as query parameters,
+they should be encoded as JSON with the following header: `Content-Type:
+'application/json'.
+
+||| col |||
+
+Example request:
+
+```shell
+curl -H 'Accept: application/json' -H 'Content-Type: application/json' -u ":$AUTH_TOKEN" \
+  -X POST https://api.scalingo.com/v1/apps -d \
+  '{
+    "app": {
+      "name": "example-app"
+    }
+  }'
+```
 
 --- row ---
 
@@ -105,8 +113,8 @@ Return 201 Created
 
 ## Make an authenticated request
 
-HTTP requests have to be authenticated with HTTP basic auth, with the authentication token as
-password, the username can be empty.
+HTTP requests have to be authenticated with HTTP basic auth, with the
+authentication token as password, the username can be empty.
 
 ||| col |||
 
@@ -245,16 +253,17 @@ Returns HTTP/1.1 422 Unprocessable Entity
 
 ### Server errors - 50x
 
-If the server returns a 50x status code, something wrong happened on our side. You can't do anything about, you can be sure that our team got notifications for it and that it will be fixed really quickly.
-
+If the server returns a 50x status code, something wrong happened on our side.
+You can't do anything about, you can be sure that our team got notifications
+for it and that it will be fixed really quickly.
 
 --- row ---
 
 # Pagination
 
-Some resources are paginated provided by the platform API are paginated.
-To ensure you can correctly handle it, metadata are added to the JSON of
-the response.
+Some resources are paginated provided by the platform API are paginated. To
+ensure you can correctly handle it, metadata are added to the JSON of the
+response.
 
 --- row ---
 
@@ -266,7 +275,8 @@ the response.
 
 ## Response meta values
 
-The returned JSON object will include a `meta` key including pagination metadata:
+The returned JSON object will include a `meta` key including pagination
+metadata:
 
 ```json
 {
