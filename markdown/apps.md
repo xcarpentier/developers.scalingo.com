@@ -55,6 +55,8 @@ Returns 201 Created
 
 `GET https://api.scalingo.com/apps`
 
+List all your applications and the one your are collaborator for.
+
 ||| col |||
 
 Example
@@ -79,6 +81,146 @@ Returns 200 OK
   ]
 }
 ```
+
+--- row ---
+
+## Get a precise application
+
+--- row ---
+
+`GET https://api.scalingo.com/v1/apps/[:app]`
+
+Display a precise application
+
+||| col |||
+
+Example request
+
+```shell
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X GET https://api.scalingo.com/v1/apps/example-app
+```
+
+Returns 200 OK
+
+```json
+{
+  "app": {
+    "id" : "51e938266edff4fac9100005",
+    "name" : "example-app",
+    "owner" : {
+       "email" : "user@example.com",
+       "id" : "51d73c1e6edfeab537000001",
+       "username" : "example-user"
+    },
+    "git_url" : "git@scalingo.com:example-app.git",
+    "last_deployed_at" : "2014-11-16T12:17:16.137+01:00",
+    "status" : "running",
+    "updated_at" : "2015-02-02T18:00:18.041+01:00",
+    "created_at" : "2013-07-19T14:59:18.329+02:00",
+    "last_deployed_by" : "example-user",
+    "domains" : [
+      {
+        "id" : "53e4a2ef7f784210ea000123",
+        "name" : "www.example.com",
+        "ssl" : false
+      }
+    ]
+  }
+}
+```
+
+--- row ---
+
+## Scale an application
+
+--- row ---
+
+`POST https://api.scalingo.com/v1/apps/[:app]/scale`
+
+Send a scaling request, the status of the application will be changed to 'scaling' for the scaling duration. No other operation is doable until the app status has switched to "running" again.  
+
+You can follow the operation progress by following the `Location` header, pointing to an `operation` resource.
+
+The request returns the complete formation of containers event those which are not currently scaled.
+
+Parameters:
+
+* `containers`: Array of the containers you want to scale.
+  Each `containers`:
+  * `container.name`: Name of the container you want to scale
+  * `container.amount`: Final amount of container of this type
+
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST 'https://api.scalingo.com/v1/apps/example-app/scale' -d \
+  '{
+    "containers": [
+      {
+        "name": "web",
+        "amount": 2
+      }
+    ]
+  }'
+```
+
+Returns 202 Accepted (Asynchronous task)
+Headers:
+  * `Location`: 'https://api.scalingo.com/v1/apps/example-app/operations/52fd2357356330032b080000'
+
+```json
+{
+  "containers": [
+    {
+      "id": "52fd2457356330032b020000",
+      "name": "web",
+      "amount": 2
+    }, {
+      "id": "52fd235735633003210a0001",
+      "name": "worker",
+      "amount": 1
+    }
+  ]
+}
+```
+
+--- row ---
+
+## Restart an application
+
+--- row ---
+
+`POST https://api.scalingo.com/v1/apps[:app]/restart`
+
+In the same spirit than the 'scale' operation, the restart is an asynchronous operation
+
+Send a restart request, the status of the application will be changed to 'restarting' for the operation duration. No other operation is doable until the app status has switched to "running" again.
+
+You can follow the operation progress by following the `Location` header, pointing to an `operation` resource.
+
+Parameters:
+
+* `scope`: Array of containers you want to restart.
+  * If empty or nil: restart everything
+  * Should fit the container types of the application: `["web", "worker"]` or `["web-1"]`
+
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST 'https://api.scalingo.com/v1/apps/example-app/restart' -d \
+  '{
+    "scope": ["web"]
+   }'
+```
+
+Return 202 Accepted (Asynchronous task) - Empty body
 
 --- row ---
 
@@ -138,7 +280,7 @@ Returns 200 OK
 
 --- row ---
 
-## Transfer ownership of an app
+## Transfer ownership of an application
 
 `PATCH https://api.scalingo.com/v1/apps/[:app]`
 

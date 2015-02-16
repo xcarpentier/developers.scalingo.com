@@ -58,6 +58,8 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
 
 <p><code class="highlighter-rouge">GET https://api.scalingo.com/apps</code></p>
 
+<p>List all your applications and the one your are collaborator for.</p>
+
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example</p>
 
@@ -81,6 +83,147 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="get-a-precise-application">Get a precise application</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]</code></p>
+
+<p>Display a precise application</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X GET https://api.scalingo.com/v1/apps/example-app
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"51e938266edff4fac9100005"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"example-app"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"51d73c1e6edfeab537000001"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"example-user"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"git_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"git@scalingo.com:example-app.git"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_deployed_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-11-16T12:17:16.137+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"running"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-02T18:00:18.041+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-07-19T14:59:18.329+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_deployed_by"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"example-user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"domains"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"53e4a2ef7f784210ea000123"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"www.example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ssl"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="scale-an-application">Scale an application</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/scale</code></p>
+
+<p>Send a scaling request, the status of the application will be changed to ‘scaling’ for the scaling duration. No other operation is doable until the app status has switched to “running” again.  </p>
+
+<p>You can follow the operation progress by following the <code class="highlighter-rouge">Location</code> header, pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
+
+<p>The request returns the complete formation of containers event those which are not currently scaled.</p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">containers</code>: Array of the containers you want to scale.<br />
+Each <code class="highlighter-rouge">containers</code>:
+    <ul>
+      <li><code class="highlighter-rouge">container.name</code>: Name of the container you want to scale</li>
+      <li><code class="highlighter-rouge">container.amount</code>: Final amount of container of this type</li>
+    </ul>
+  </li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST <span class="s1">'https://api.scalingo.com/v1/apps/example-app/scale'</span> -d <span class="se">\</span>
+  <span class="s1">'{
+    "containers": [
+      {
+        "name": "web",
+        "amount": 2
+      }
+    ]
+  }'</span>
+</code></pre>
+</div>
+
+<p>Returns 202 Accepted (Asynchronous task)<br />
+Headers:<br />
+  * <code class="highlighter-rouge">Location</code>: ‘https://api.scalingo.com/v1/apps/example-app/operations/52fd2357356330032b080000’</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"containers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52fd2457356330032b020000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52fd235735633003210a0001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"worker"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="restart-an-application">Restart an application</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps[:app]/restart</code></p>
+
+<p>In the same spirit than the ‘scale’ operation, the restart is an asynchronous operation</p>
+
+<p>Send a restart request, the status of the application will be changed to ‘restarting’ for the operation duration. No other operation is doable until the app status has switched to “running” again.</p>
+
+<p>You can follow the operation progress by following the <code class="highlighter-rouge">Location</code> header, pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">scope</code>: Array of containers you want to restart.
+    <ul>
+      <li>If empty or nil: restart everything</li>
+      <li>Should fit the container types of the application: <code class="highlighter-rouge">["web", "worker"]</code> or <code class="highlighter-rouge">["web-1"]</code></li>
+    </ul>
+  </li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST <span class="s1">'https://api.scalingo.com/v1/apps/example-app/restart'</span> -d <span class="se">\</span>
+  <span class="s1">'{
+    "scope": ["web"]
+   }'</span>
+</code></pre>
+</div>
+
+<p>Return 202 Accepted (Asynchronous task) - Empty body</p>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="delete-an-application">Delete an application</h2>
@@ -139,7 +282,7 @@ it can’t have an hyphen at the beginning or at the end, nor two hyphens in a r
 </div>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h2 id="transfer-ownership-of-an-app">Transfer ownership of an app</h2>
+<h2 id="transfer-ownership-of-an-application">Transfer ownership of an application</h2>
 
 <p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]</code></p>
 
