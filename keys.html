@@ -1,0 +1,162 @@
+---
+layout: default
+title: SSH Keys
+---
+
+<div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="ssh-keys">SSH Keys</h1>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><strong>Keys attributes</strong></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>unique ID of the key</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>Given name to the key</td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td>Raw content of the SSH public key</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="list-all-ssh-keys">List all SSH keys</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/account/keys</code></p>
+
+<p>Return the list of all the public keys which are able to connect to the<br />
+platform.  SSH keys allow you to deploy their applications and to build<br />
+encrypted tunnels to the application databases (command <code class="highlighter-rouge">db-tunnel</code> of our<br />
+<a href="http://cli.scalingo.com">CLI Tool</a>).</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H 'Accept: application/json' -H 'Content-Type: application/json' -u ":$AUTH_TOKEN" \
+  -X GET https://api.scalingo.com/v1/account/keys
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"keys"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcde4a54636101231a0000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Office Laptop"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmlEXHPj43jNzIiFbFx0NlcZpsFQZUC4paVoDf1/VXeA4P5ld5YT5O4PQEwvx/V8HzQit0sXRgUSFcKgGlAs9b0ea/nzxov8b3kc+Z5Ak1aRSkXKYE30xW9ALag9Pdf1ejzUXMY3X4bltEsyx7wV5i1hkKzQPHrH4SjhcGv+ILAg4J9KDfyqQ2QmKzVA+Esbmg3RE0IGbZIoNBxBYbNejcaw8+lX7nLsqAP8fZ+dgFP3JYsOYuTibtM5s09Gw7c3oXLrRm6F5G/Au6HYqlNYEKUYgZ2UmXox2vK1ljOZYzcOGj9kGqJ5DQgn88cVPqbA73vAYKGY6WcZf2X+3JOTct example-user@scalingo.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcde4a54a36131231a0001"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Continuous Integration"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Public SSH Key&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="get-a-precise-ssh-key">Get a precise SSH key</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/account/keys/[:key_id]</code></p>
+
+<p>Return a given public ssh key.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H 'Accept: application/json' -H 'Content-Type: application/json' -u ":$AUTH_TOKEN" \
+  -X GET https://api.scalingo.com/v1/account/keys/54dcde4a54636101231a0000
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcde4a54636101231a0000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Office Laptop"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmlEXHPj43jNzIiFbFx0NlcZpsFQZUC4paVoDf1/VXeA4P5ld5YT5O4PQEwvx/V8HzQit0sXRgUSFcKgGlAs9b0ea/nzxov8b3kc+Z5Ak1aRSkXKYE30xW9ALag9Pdf1ejzUXMY3X4bltEsyx7wV5i1hkKzQPHrH4SjhcGv+ILAg4J9KDfyqQ2QmKzVA+Esbmg3RE0IGbZIoNBxBYbNejcaw8+lX7nLsqAP8fZ+dgFP3JYsOYuTibtM5s09Gw7c3oXLrRm6F5G/Au6HYqlNYEKUYgZ2UmXox2vK1ljOZYzcOGj9kGqJ5DQgn88cVPqbA73vAYKGY6WcZf2X+3JOTct example-user@scalingo.com"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="allow-a-new-public-ssh-key">Allow a new public SSH key</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/account/keys</code></p>
+
+<p>Allow a new SSH key pair to deploy applications</p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">key.name</code>: Name of the key you want to add</li>
+  <li><code class="highlighter-rouge">key.content</code>: Public SSH key content (ie. content of <code class="highlighter-rouge">~/.ssh/id_rsa.pub</code>)</li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H 'Accept: application/json' -H 'Content-Type: application/json' -u ":$AUTH_TOKEN" \
+  -X POST https://api.scalingo.com/v1/account/keys -d \
+  '{
+    "key" {
+      "name" : "Office Laptop",
+      "content" : "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmlEXHPj43jNzIiFbFx0NlcZpsFQZUC4paVoDf1/VXeA4P5ld5YT5O4PQEwvx/V8HzQit0sXRgUSFcKgGlAs9b0ea/nzxov8b3kc+Z5Ak1aRSkXKYE30xW9ALag9Pdf1ejzUXMY3X4bltEsyx7wV5i1hkKzQPHrH4SjhcGv+ILAg4J9KDfyqQ2QmKzVA+Esbmg3RE0IGbZIoNBxBYbNejcaw8+lX7nLsqAP8fZ+dgFP3JYsOYuTibtM5s09Gw7c3oXLrRm6F5G/Au6HYqlNYEKUYgZ2UmXox2vK1ljOZYzcOGj9kGqJ5DQgn88cVPqbA73vAYKGY6WcZf2X+3JOTct example-user@scalingo.com"
+    }
+  }'
+</code></pre>
+</div>
+
+<p>Returns 201 Created</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcde4a54636101231a0000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Office Laptop"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCmlEXHPj43jNzIiFbFx0NlcZpsFQZUC4paVoDf1/VXeA4P5ld5YT5O4PQEwvx/V8HzQit0sXRgUSFcKgGlAs9b0ea/nzxov8b3kc+Z5Ak1aRSkXKYE30xW9ALag9Pdf1ejzUXMY3X4bltEsyx7wV5i1hkKzQPHrH4SjhcGv+ILAg4J9KDfyqQ2QmKzVA+Esbmg3RE0IGbZIoNBxBYbNejcaw8+lX7nLsqAP8fZ+dgFP3JYsOYuTibtM5s09Gw7c3oXLrRm6F5G/Au6HYqlNYEKUYgZ2UmXox2vK1ljOZYzcOGj9kGqJ5DQgn88cVPqbA73vAYKGY6WcZf2X+3JOTct example-user@scalingo.com"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="remove-a-ssh-key-from-the-account">Remove a SSH key from the account</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">DELETE https://api.scalingo.com/v1/account/keys/[:key_id]</code></p>
+
+<p>The modification will take effect immediately, the usage of this key will result<br />
+in ‘Unauthorized’ errors.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H 'Accept: application/json' -H 'Content-Type: application/json' -u ":$AUTH_TOKEN" \
+  -X DELETE https://api.scalingo.com/v1/account/keys/54dcde4a54636101231a0000
+</code></pre>
+</div>
+
+<p>Returns 204 No Content</p>
+</div></div>
