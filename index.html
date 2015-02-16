@@ -46,7 +46,7 @@ layout: default
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="http-verbs">HTTP Verbs</h2>
 
-<p>The API is not perfectly RESTful, it is more REST-ish. It has been developed to<br />
+<p>The API is not perfectly RESTful, it is more REST-ish. It has been developed to
 be easy to use and instinctive, we’ll probably normalize in a second version.</p>
 
 <ul>
@@ -61,7 +61,7 @@ be easy to use and instinctive, we’ll probably normalize in a second version.<
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="authentication">Authentication</h1>
 
-<p>The authentication to the API is done thanks to an authentication token and<br />
+<p>The authentication to the API is done thanks to an authentication token and
 Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted.</p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
@@ -101,7 +101,7 @@ Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="make-an-authenticated-request">Make an authenticated request</h2>
 
-<p>HTTP requests have to be authenticated with HTTP basic auth, with the authentication token as<br />
+<p>HTTP requests have to be authenticated with HTTP basic auth, with the authentication token as
 password, the username can be empty.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
@@ -238,8 +238,8 @@ password, the username can be empty.</p>
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="pagination">Pagination</h1>
 
-<p>Some resources are paginated provided by the platform API are paginated.<br />
-To ensure you can correctly handle it, metadata are added to the JSON of<br />
+<p>Some resources are paginated provided by the platform API are paginated.
+To ensure you can correctly handle it, metadata are added to the JSON of
 the response.</p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
@@ -247,7 +247,7 @@ the response.</p>
 
 <ul>
   <li><code class="highlighter-rouge">page</code>: Requested page number</li>
-  <li><code class="highlighter-rouge">per_page</code>: Number of entries per page.<br />
+  <li><code class="highlighter-rouge">per_page</code>: Number of entries per page.
 Each resource has a maximum for this value to avoid oversized requests</li>
 </ul>
 
@@ -270,7 +270,7 @@ Each resource has a maximum for this value to avoid oversized requests</li>
 </div>
 
 <blockquote>
-  <p><code class="highlighter-rouge">prev_page</code> and/or <code class="highlighter-rouge">next_page</code> are equal to <code class="highlighter-rouge">null</code> if there is no previous<br />
+  <p><code class="highlighter-rouge">prev_page</code> and/or <code class="highlighter-rouge">next_page</code> are equal to <code class="highlighter-rouge">null</code> if there is no previous
 or next page.</p>
 </blockquote>
 
