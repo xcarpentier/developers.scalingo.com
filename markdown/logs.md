@@ -39,6 +39,7 @@ curl -H "Connection: Upgrade" -H "Upgrade: websocket" -v \
 Return 101 Switching Protocol
 
 Each event:
+
 ```json
 {
    "name": "log",
