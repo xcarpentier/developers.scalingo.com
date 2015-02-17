@@ -41,7 +41,7 @@ Example object
 
 --- row ---
 
-GET https://api.scalingo.com/v1/apps[:app]/domains
+`GET https://api.scalingo.com/v1/apps/[:app]/domains`
 
 ||| col |||
 
