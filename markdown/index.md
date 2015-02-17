@@ -36,7 +36,7 @@ be easy to use and instinctive, we'll probably normalize in a second version.
 * POST		Used for creating resources. (creation of a new app, or to create an environment variable)
 * PATCH		Update part of resources, as the value of an environment variable.
 * PUT		Update complete resources.
-* DELETE	Used for deleting items. Nullipotent operation (as GET)
+* DELETE	Used for deleting items.
 
 --- row ---
 
