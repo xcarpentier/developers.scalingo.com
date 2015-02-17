@@ -4,7 +4,17 @@
 
 ## Introduction
 
-The current API version is the __v1__. All the endpoints are prefixed by `/v1`. It's only available through HTTPS: it's TLS, or nothing.
+The current API version is the __v1__. All the endpoints are prefixed by `/v1`.
+It's only available through HTTPS: it's TLS, or nothing.
+
+The API has been tagged __v1__. However it is not a frozen API. We may and we
+will update endpoints and create new ones. But you can be sure we won't break
+the existing. If any major change about the way JSON is structured, we will
+keep the right to release a __v2__ and so forth.
+
+In any case, we will communicate through our [blog](http://blog.scalingo.com),
+[changelog](http://changelog.scalingo.com) and [twitter](https://twitter.com/ScalingoHQ)
+when any change occures on the API.
 
 ||| col |||
 
