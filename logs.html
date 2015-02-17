@@ -18,6 +18,39 @@ title: Application Logs
   <li><code class="highlighter-rouge">stream</code> (default false): toggle streaming</li>
 </ul>
 
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h3 id="dump-logs">Dump logs</h3>
+
+<p>If <code class="highlighter-rouge">stream=false</code> or is not set, the response will be simple text containing
+the logs.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -X GET <span class="s1">'https://logs.scalingo.com/apps/example-app/logs?n=10'</span>
+</code></pre>
+</div>
+
+<p>Response 200 OK</p>
+
+<p>Content-Type: text/plain</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2015-02-16 02:02:43.930163178 +0000 UTC [web-1] [martini] Started GET / for [filtered IP]
+2015-02-16 02:02:43.930366145 +0000 UTC [web-1] [martini] Completed 200 OK in 706.641us
+2015-02-16 14:47:03.193533257 +0000 UTC [web-1] [martini] Started GET / for [filtered IP]
+2015-02-16 14:47:03.193707764 +0000 UTC [web-1] [martini] Completed 200 OK in 726.31us
+2015-02-17 03:40:14.075695384 +0000 UTC [web-1] [martini] Started GET /robots.txt for [filtered IP]
+2015-02-17 03:40:14.075881300 +0000 UTC [web-1] [martini] Completed 404 Not Found in 490.714us
+2015-02-17 03:40:14.137580886 +0000 UTC [web-2] [martini] Started GET / for [filtered IP]
+2015-02-17 03:40:14.137823473 +0000 UTC [web-2] [martini] Completed 200 OK in 479.471us
+2015-02-17 16:49:08.560437937 +0000 UTC [web-1] [martini] Started GET / for [filtered IP]
+2015-02-17 16:49:08.560662564 +0000 UTC [web-1] [martini] Completed 200 OK in 685.771us
+</code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h3 id="stream-logs">Stream logs</h3>
+
 <p>When <code class="highlighter-rouge">stream=true</code> two ways to fetch logs are possible</p>
 
 <ul>
@@ -35,8 +68,6 @@ If websocket is not required, it will fallback on SSE</li>
 
 <p>If you are not familiar with these technologies, here is a <a href="http://enterprisewebbook.com/ch8_websockets.html">nice
 intro to them</a>.</p>
-
-<p>If <code class="highlighter-rouge">stream=false</code> the result is in <code class="highlighter-rouge">plain/text</code> and is directly the logs data.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Websocket example:</p>
@@ -72,7 +103,7 @@ closed.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;date&gt;</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;date&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
