@@ -2,7 +2,7 @@
 
 --- row ---
 
-**App addon attributes**
+**Addon attributes**
 
 {:.table}
 | field          | type                                          |
@@ -13,13 +13,13 @@
 
 --- row ---
 
-## List app addons
+## List application addons
 
 --- row ---
 
 `GET https://api.scalingo.com/v1/apps/[:app]/addons`
 
-List all the provisionned addons for a given application.
+List all the provisioned addons for a given application.
 
 ||| col |||
 

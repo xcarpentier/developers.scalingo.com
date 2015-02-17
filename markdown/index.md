@@ -29,7 +29,7 @@ https://api.scalingo.com/v1/
 ## HTTP Verbs
 
 The API is not perfectly RESTful, it is more REST-ish. It has been developed to
-be easy to use and instinctive, we'll probably normalize in a second version.
+be easy to use and instinctive, we'll probably normalize it, in a second version.
 
 * HEAD		Can be issued against any resource to get just the HTTP header info.
 * GET		Get resources, nullipotent operation (no matter how many times you call it, there is no side effect).
@@ -264,14 +264,14 @@ Returns HTTP/1.1 422 Unprocessable Entity
 ### Server errors - 50x
 
 If the server returns a 50x status code, something wrong happened on our side.
-You can't do anything about, you can be sure that our team got notifications
+You can't do anything about it, you can be sure that our team got notifications
 for it and that it will be fixed really quickly.
 
 --- row ---
 
 # Pagination
 
-Some resources are paginated provided by the platform API are paginated. To
+Some resources provided by the platform API are paginated. To
 ensure you can correctly handle it, metadata are added to the JSON of the
 response.
 
