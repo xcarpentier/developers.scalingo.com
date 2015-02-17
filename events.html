@@ -5,6 +5,10 @@ title: Events
 
 <div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="events">Events</h1>
 
+<p>Events are generated automatically according to your actions,
+thanks to them, you can have an overview of the activity of your
+applications.</p>
+
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><strong>Event attributes</strong></p>
 
@@ -12,7 +16,7 @@ title: Events
   <thead>
     <tr>
       <th>field</th>
-      <th>type</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
@@ -39,6 +43,186 @@ title: Events
   </tbody>
 </table>
 
+<p>According to the <code class="highlighter-rouge">type</code> field, extra data will be included
+in the structure:</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<ul>
+  <li>Base event</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcdd4a73636100011a0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-12T18:05:14.226+01:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<ul>
+  <li><strong>Restart event</strong></li>
+</ul>
+
+<p><em>When:</em> The application or some containers have been restarted
+<code class="highlighter-rouge">type=restart</code></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>scope</td>
+      <td>The scope of the restart, null is all</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcdd4a73636100011a0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-12T18:05:14.226+01:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"web"</span><span class="p">,</span><span class="w"> </span><span class="s2">"worker"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<ul>
+  <li><strong>Scale event</strong></li>
+</ul>
+
+<p><em>When:</em> The application has been scaled out 
+<code class="highlighter-rouge">type=scale</code></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>previous_containers</td>
+      <td>The formation before the operation</td>
+    </tr>
+    <tr>
+      <td>containers</td>
+      <td>The formation after the request</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcdd4a73636100011a0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-12T18:05:14.226+01:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous_containers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"web"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"worker"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"containers"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"web"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"worker"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<ul>
+  <li><strong>Deployment event</strong></li>
+</ul>
+
+<p><em>When:</em> A deployment has been done
+<code class="highlighter-rouge">type=deployment</code></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>deployment</td>
+      <td>The <a href="/deployment.html">Deployment</a> associated to the event</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcdd4a73636100011a0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-12T18:05:14.226+01:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deployment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646aa3012a140230"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"push"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"git_ref"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<ul>
+  <li><strong>Run event</strong></li>
+</ul>
+
+<p><em>When:</em> Someone runs <code class="highlighter-rouge">scalingo run</code> from the <a href="http://cli.scalingo.com">CLI</a>
+<code class="highlighter-rouge">type=run</code></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>command</td>
+      <td>The command run by the user</td>
+    </tr>
+  </tbody>
+</table>
+
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example object:</p>
 
@@ -50,9 +234,149 @@ title: Events
       </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rake db:migrate"</span><span class="w">
+  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bundle exec rake db:migrate"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<ul>
+  <li><strong>New Variable event</strong></li>
+</ul>
+
+<p><em>When:</em> Each time a variable is added to the application
+<code class="highlighter-rouge">type=new_variable</code></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>Name of the newly created variable</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>Value of the new variable</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcdd4a73636100011a0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-12T18:05:14.226+01:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VAR1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<ul>
+  <li><strong>Edit Variable event</strong></li>
+</ul>
+
+<p><em>When:</em> Each time a variable is modified
+<code class="highlighter-rouge">type=edit_variable</code></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>Name of the modified variable</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>New value of the modified variable</td>
+    </tr>
+    <tr>
+      <td>old_value</td>
+      <td>Previous value of the modified variable</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcdd4a73636100011a0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-12T18:05:14.226+01:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VAR1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"old_value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<ul>
+  <li></li>
+</ul>
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><strong>Delete variable event</strong></p>
+
+<p><em>When:</em> Each time a variable is deleted
+<code class="highlighter-rouge">type=delete_variable</code></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>name</td>
+      <td>Name of the deleted variable</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>Value of the deleted variable</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54dcdd4a73636100011a0000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-12T18:05:14.226+01:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51e6bc626edfe40bbb000001"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5343eccd646173000a140000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VAR1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
