@@ -6,6 +6,77 @@ title: Applications
 <div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="applications">Applications</h1>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><strong>Application attributes</strong></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>type</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>string</td>
+      <td>unique ID</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>name of the application, can substitute the ID</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>date</td>
+      <td>creation date of the application</td>
+    </tr>
+    <tr>
+      <td>updated_at</td>
+      <td>date</td>
+      <td>last time the application has been updated</td>
+    </tr>
+    <tr>
+      <td>git_url</td>
+      <td>string</td>
+      <td>URL to the GIT remote to access your application</td>
+    </tr>
+    <tr>
+      <td>owner</td>
+      <td>object</td>
+      <td>information about the owner of the application</td>
+    </tr>
+    <tr>
+      <td>urls</td>
+      <td>array</td>
+      <td>list of custom domains to access to your project</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54100930736f7563d5030000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-app"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-10T10:17:52.690+02:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-10T10:17:52.690+02:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"git_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"git@scalingo.com:example-app.git"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54100245736f7563d5000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"urls"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"example-app.scalingo.io"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="create-an-application">Create an application</h2>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
@@ -198,7 +269,7 @@ Headers:
 <h2 id="restart-an-application">Restart an application</h2>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps[:app]/restart</code></p>
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/restart</code></p>
 
 <p>In the same spirit than the ‘scale’ operation, the restart is an asynchronous
 operation</p>
@@ -325,6 +396,68 @@ collaborators</li>
     </span><span class="err">...</span><span class="w">
   </span><span class="err">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="access-to-the-application-logs">Access to the application logs</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/logs</code></p>
+
+<p>The request will generate an URL you can use to access the logs of your application.</p>
+
+<p>How to use this endpoint: <a href="/logs.html">more information here</a></p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST <span class="s1">'https://api.scalingo.com/v1/apps/example-app/logs'</span>
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="err">}</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logs_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://logs.scalingo.com/apps/example-app/logs?token=0123456789"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="run-a-container-in-the-environment-of-your-application">Run a container in the environment of your application</h2>
+
+<p>Similar to <code class="highlighter-rouge">scalingo run</code></p>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/run</code></p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST <span class="s1">'https://api.scalingo.com/v1/apps/example-app/run -d \
+  '</span><span class="o">{</span>
+    <span class="s2">"command"</span>: <span class="s2">"bundle exec rails console"</span>
+  <span class="o">}</span><span class="s1">'
+
+Returns 200 OK
+
+```json
+{
+  "container": {
+    "id" : "5250424112dba4edf0000024",
+    "type" : "job",
+    "type_index" : 0,
+    "created_at" : "2015-02-17T22:10:32.692+01:00",
+    "memory" : 5.36870912e+08,
+    "state" : "booting",
+    "app" : { "name": "example-app", ... }
+  },
+  "attach_url": "http://run-1.scalingo.com:5000/f15d8c7fb4170c4ef14b63b2b265c8fa3dbf4a5882de19682a21f6243ae332c6"
+}
 </span></code></pre>
 </div>
 </div></div>

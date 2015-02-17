@@ -1,0 +1,79 @@
+---
+layout: default
+title: Application Logs
+---
+
+<div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="application-logs">Application Logs</h1>
+
+<h2 id="dump-and-stream-logs">Dump and stream logs</h2>
+
+<p><code class="highlighter-rouge">GET https://logs.scalingo.com/apps/[:app]/logs?token=[:token]</code></p>
+
+<p>To get an authenticated URL, see <a href="/apps.html#access-to-the-application-logs">Application#logs</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">n</code>: How many lines of the history should be returned</li>
+  <li><code class="highlighter-rouge">stream</code> (default false): toggle streaming</li>
+</ul>
+
+<p>When <code class="highlighter-rouge">stream=true</code> two ways to fetch logs are possible</p>
+
+<ul>
+  <li>Websocket
+If your request contains the following headers:
+    <ul>
+      <li>Upgrade: websocket</li>
+      <li>Connection: Upgrade
+An attempt to communicate through websocket will be done.</li>
+    </ul>
+  </li>
+  <li>Server Sent-Events (SSE)
+If websocket is not required, it will fallback on SSE</li>
+</ul>
+
+<p>If you are not familiar with these technologies, here is a <a href="http://enterprisewebbook.com/ch8_websockets.html">nice
+intro to them</a>.</p>
+
+<p>If <code class="highlighter-rouge">stream=false</code> the result is in <code class="highlighter-rouge">plain/text</code> and is directly the logs data.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Websocket example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Connection: Upgrade"</span> -H <span class="s2">"Upgrade: websocket"</span> -v <span class="se">\</span>
+ -X GET <span class="s1">'https://logs.scalingo.com/apps/example-app/logs?n=0&amp;stream=true'</span>
+</code></pre>
+</div>
+
+<p>Return 101 Switching Protocol</p>
+
+<p>Each event:
+<code class="highlighter-rouge">json
+{
+   "name": "log",
+   "log": "&lt;log content&gt;"
+}
+</code></p>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h3 id="keepalive-events-to-avoid-connection-timeout">Keepalive events to avoid connection timeout</h3>
+
+<p>Our frontal servers disallow inactive connections. To avoid websockets or SSE
+connections to be cut after 30 seconds of inactivity, both methods are send
+keepalive data.</p>
+
+<p>These events don’t expect any responser, they just ensure the connection is not
+closed.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Exemple of keepalive event</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;date&gt;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div>

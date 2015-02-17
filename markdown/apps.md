@@ -2,6 +2,43 @@
 
 --- row ---
 
+**Application attributes**
+
+{:.table}
+| field          | type   | description                                      |
+| -------------- | ------ | ------------------------------------------------ |
+| id             | string | unique ID                                        |
+| name           | string | name of the application, can substitute the ID   | 
+| created_at     | date   | creation date of the application                 |
+| updated_at     | date   | last time the application has been updated       |
+| git_url        | string | URL to the GIT remote to access your application |
+| owner          | object | information about the owner of the application   |
+| urls           | array  | list of custom domains to access to your project |
+
+||| col |||
+
+Example object:
+
+```json
+{
+  "id": "54100930736f7563d5030000",
+  "name": "example-app",
+  "created_at": "2014-09-10T10:17:52.690+02:00",
+  "updated_at": "2014-09-10T10:17:52.690+02:00",
+  "git_url": "git@scalingo.com:example-app.git",
+  "owner": {
+    "username": "john",
+    "email": "user@example.com",
+    "id": "54100245736f7563d5000000"
+  },
+  "urls": [
+    "example-app.scalingo.io"
+  ]
+}
+```
+
+--- row ---
+
 ## Create an application
 
 --- row ---
@@ -199,7 +236,7 @@ Headers:
 
 --- row ---
 
-`POST https://api.scalingo.com/v1/apps[:app]/restart`
+`POST https://api.scalingo.com/v1/apps/[:app]/restart`
 
 In the same spirit than the 'scale' operation, the restart is an asynchronous
 operation
@@ -322,5 +359,73 @@ Returns 200 OK
     "name": "example-app",
     ...
   }
+}
+```
+
+--- row ---
+
+## Access to the application logs
+
+--- row ---
+
+`POST https://api.scalingo.com/v1/apps/[:app]/logs`
+
+The request will generate an URL you can use to access the logs of your application.
+
+How to use this endpoint: [more information here](/logs.html)
+
+||| col |||
+
+Example request:
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST 'https://api.scalingo.com/v1/apps/example-app/logs'
+```
+
+Returns 200 OK
+
+```json
+{
+  "app": { … },
+  "logs_url": "https://logs.scalingo.com/apps/example-app/logs?token=0123456789"
+}
+```
+
+--- row ---
+
+## Run a container in the environment of your application
+
+Similar to `scalingo run`
+
+--- row ---
+
+`POST https://api.scalingo.com/v1/apps/[:app]/run`
+
+||| col |||
+
+Example request:
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X POST 'https://api.scalingo.com/v1/apps/example-app/run -d \
+  '{
+    "command": "bundle exec rails console"
+  }'
+
+Returns 200 OK
+
+```json
+{
+  "container": {
+    "id" : "5250424112dba4edf0000024",
+    "type" : "job",
+    "type_index" : 0,
+    "created_at" : "2015-02-17T22:10:32.692+01:00",
+    "memory" : 5.36870912e+08,
+    "state" : "booting",
+    "app" : { "name": "example-app", ... }
+  },
+  "attach_url": "http://run-1.scalingo.com:5000/f15d8c7fb4170c4ef14b63b2b265c8fa3dbf4a5882de19682a21f6243ae332c6"
 }
 ```
