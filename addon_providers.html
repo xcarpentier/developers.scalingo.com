@@ -13,48 +13,91 @@ title: Addon providers
     <tr>
       <th>field</th>
       <th>type</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
+      <td>string</td>
       <td>unique ID</td>
     </tr>
     <tr>
       <td>name</td>
+      <td>string</td>
       <td>name</td>
     </tr>
     <tr>
       <td>logo_url</td>
-      <td>value</td>
+      <td>string</td>
+      <td>URL of the addon logo</td>
     </tr>
     <tr>
       <td>short_description</td>
+      <td>string</td>
       <td>short description</td>
     </tr>
     <tr>
       <td>description</td>
+      <td>string</td>
       <td>description</td>
     </tr>
     <tr>
       <td>category</td>
+      <td>object</td>
       <td>embedded category object</td>
     </tr>
     <tr>
       <td>provider_name</td>
+      <td>string</td>
       <td>name of company offering this addon</td>
     </tr>
     <tr>
       <td>provider_url</td>
-      <td>url of company offering this addon</td>
+      <td>string</td>
+      <td>URL of company offering this addon</td>
     </tr>
     <tr>
       <td>plans</td>
+      <td>array</td>
       <td>embedded array of plans for this addon</td>
     </tr>
   </tbody>
 </table>
 
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scalingo PostgreSQL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://lb1047.pcs.ovh.net/v1/AUTH_c91a9132e4f149809d23b20b6de57161/appsdeck/postgresql.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scalingo-postgresql"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"short_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scalingo's PostgreSQL Database as a Service"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[HTML Description]"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54c6909b61646d0001000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Data stores"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"provider_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scalingo"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"provider_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scalingo.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plans"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54071fa5646173000b010000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512MB Free Tier"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Markdown Description]"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5474a6c66461730001010000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1g"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1G Database"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Markdown Description]"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><strong>Addon plan attributes</strong></p>
 
 <table class="table">
@@ -62,32 +105,52 @@ title: Addon providers
     <tr>
       <th>field</th>
       <th>type</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
+      <td>string</td>
       <td>unique ID</td>
     </tr>
     <tr>
       <td>name</td>
+      <td>string</td>
       <td>name (internal reference)</td>
     </tr>
     <tr>
       <td>display_name</td>
+      <td>string</td>
       <td>user friendly name</td>
     </tr>
     <tr>
       <td>price</td>
-      <td>float, in euros</td>
+      <td>float</td>
+      <td>in euros</td>
     </tr>
     <tr>
       <td>description</td>
+      <td>string</td>
       <td>description of this plan</td>
     </tr>
   </tbody>
 </table>
 
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54071fa5646173000b010000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"display_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"512MB Free Tier"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Markdown Description]"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><strong>Addon category attributes</strong></p>
 
 <table class="table">
@@ -95,21 +158,40 @@ title: Addon providers
     <tr>
       <th>field</th>
       <th>type</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
+      <td>string</td>
       <td>unique ID</td>
     </tr>
     <tr>
+      <td>description</td>
+      <td>string</td>
+      <td>description of the category</td>
+    </tr>
+    <tr>
       <td>name</td>
+      <td>string</td>
       <td>name</td>
     </tr>
   </tbody>
 </table>
 
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54c6909b61646d0001000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[Markdown description]"</span><span class="w">
+  </span><span class="s2">"name"</span><span class="err">:</span><span class="w"> </span><span class="s2">"Data stores"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="list-addon-providers">List addon providers</h2>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>

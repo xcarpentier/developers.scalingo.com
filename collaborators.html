@@ -13,29 +13,46 @@ title: Collaborators
     <tr>
       <th>field</th>
       <th>type</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
+      <td>string</td>
       <td>unique ID</td>
     </tr>
     <tr>
       <td>email</td>
+      <td>string</td>
       <td>email address</td>
     </tr>
     <tr>
       <td>username</td>
-      <td>username (“N/A” if user has not chosen username yet or if invitation is still pending)</td>
+      <td>string</td>
+      <td>username (“n/a”: invitation is still pending)</td>
     </tr>
     <tr>
       <td>status</td>
-      <td>status of the collaborator (pending: invitation not yet accepted, accepted: invitation has been accepted and collaborator is <em>active</em>)</td>
+      <td>string</td>
+      <td><strong>pending</strong>: invitation not yet accepted, <strong>accepted</strong>: invitation has been accepted</td>
     </tr>
   </tbody>
 </table>
 
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foo@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54101e25736f7563d5060000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"soulou"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="list-collaborators-of-an-app">List collaborators of an app</h2>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>

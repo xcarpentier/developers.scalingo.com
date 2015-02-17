@@ -5,36 +5,100 @@
 **Addon provider attributes**
 
 {:.table}
-| field      | type                  |
-| ---------- | --------------------- |
-| id         | unique ID |
-| name       | name                  |
-| logo_url      | value |
-| short_description | short description |
-| description | description |
-| category | embedded category object |
-| provider_name | name of company offering this addon |
-| provider_url | url of company offering this addon |
-| plans | embedded array of plans for this addon |
+| field             | type   | description                            |
+| ----------------- | ------ | -------------------------------------- |
+| id                | string | unique ID                              |
+| name              | string | name                                   |
+| logo_url          | string | URL of the addon logo                  |
+| short_description | string | short description                      |
+| description       | string | description                            |
+| category          | object | embedded category object               |
+| provider_name     | string | name of company offering this addon    |
+| provider_url      | string | URL of company offering this addon     |
+| plans             | array  | embedded array of plans for this addon |
+
+||| col |||
+
+Example object:
+
+```json
+{
+  "name": "Scalingo PostgreSQL",
+  "logo_url": "https://lb1047.pcs.ovh.net/v1/AUTH_c91a9132e4f149809d23b20b6de57161/appsdeck/postgresql.png",
+  "id": "scalingo-postgresql",
+  "short_description": "Scalingo's PostgreSQL Database as a Service",
+  "description": "[HTML Description]",
+  "category": {
+    "id": "54c6909b61646d0001000000",
+    "name": "Data stores"
+  },
+  "provider_name": "Scalingo",
+  "provider_url": "https://scalingo.com",
+  "plans": [{
+    "id": "54071fa5646173000b010000",
+    "name": "free",
+    "display_name": "512MB Free Tier",
+    "price": 0.0,
+    "description": "[Markdown Description]"
+  }, {
+    "id": "5474a6c66461730001010000",
+    "name": "1g",
+    "display_name": "1G Database",
+    "price": 14.4,
+    "description": "[Markdown Description]"
+  }]
+}
+```
+
+--- row ---
 
 **Addon plan attributes**
 
 {:.table}
-| field      | type                  |
-| ---------- | --------------------- |
-| id         | unique ID |
-| name       | name (internal reference) |
-| display_name | user friendly name |
-| price | float, in euros |
-| description | description of this plan |
+| field        | type   | description               |
+| ------------ | ------ | ------------------------- |
+| id           | string | unique ID                 |
+| name         | string | name (internal reference) |
+| display_name | string | user friendly name        |
+| price        | float  | in euros                  |
+| description  | string | description of this plan  |
+
+||| col |||
+
+Example object:
+
+```json
+{
+  "id": "54071fa5646173000b010000",
+  "name": "free",
+  "display_name": "512MB Free Tier",
+  "price": 0.0,
+  "description": "[Markdown Description]"
+}
+```
+
+--- row ---
 
 **Addon category attributes**
 
 {:.table}
-| field      | type                  |
-| ---------- | --------------------- |
-| id         | unique ID |
-| name       | name                  |
+| field       | type   | description                 |
+| ----------- | ------ | --------------------------- |
+| id          | string | unique ID                   |
+| description | string | description of the category |
+| name        | string | name                        |
+
+||| col |||
+
+Example object:
+
+```json
+{
+  "id": "54c6909b61646d0001000000",
+  "description": "[Markdown description]"
+  "name": "Data stores"
+}
+```
 
 --- row ---
 

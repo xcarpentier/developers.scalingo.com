@@ -14,7 +14,7 @@ keep the right to release a __v2__ and so forth.
 
 In any case, we will communicate through our [blog](http://blog.scalingo.com),
 [changelog](http://changelog.scalingo.com) and [twitter](https://twitter.com/ScalingoHQ)
-when any change occures on the API.
+when any change occurs on the API.
 
 ||| col |||
 

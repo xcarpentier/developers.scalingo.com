@@ -16,28 +16,34 @@ applications.</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
+      <td>string</td>
       <td>unique ID of event</td>
     </tr>
     <tr>
       <td>created_at</td>
+      <td>date</td>
       <td>date of creation</td>
     </tr>
     <tr>
       <td>user</td>
+      <td>object</td>
       <td>embedded user who generated the event</td>
     </tr>
     <tr>
       <td>type</td>
-      <td>type of event (can be among delete_variable deployment edit_variable new_variable restart run scale)</td>
+      <td>string</td>
+      <td>type of event (see below for the values)</td>
     </tr>
     <tr>
       <td>app_id</td>
+      <td>string</td>
       <td>unique ID of app the event belongs to</td>
     </tr>
   </tbody>
@@ -78,12 +84,14 @@ in the structure:</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>scope</td>
+      <td>array</td>
       <td>The scope of the restart, null is all</td>
     </tr>
   </tbody>
@@ -118,16 +126,19 @@ in the structure:</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>previous_containers</td>
+      <td>object</td>
       <td>The formation before the operation</td>
     </tr>
     <tr>
       <td>containers</td>
+      <td>object</td>
       <td>The formation after the request</td>
     </tr>
   </tbody>
@@ -168,12 +179,14 @@ in the structure:</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>deployment</td>
+      <td>object</td>
       <td>The <a href="/deployment.html">Deployment</a> associated to the event</td>
     </tr>
   </tbody>
@@ -212,12 +225,14 @@ in the structure:</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>command</td>
+      <td>string</td>
       <td>The command run by the user</td>
     </tr>
   </tbody>
@@ -252,16 +267,19 @@ in the structure:</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>name</td>
+      <td>string</td>
       <td>Name of the newly created variable</td>
     </tr>
     <tr>
       <td>value</td>
+      <td>string</td>
       <td>Value of the new variable</td>
     </tr>
   </tbody>
@@ -297,20 +315,24 @@ in the structure:</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>name</td>
+      <td>string</td>
       <td>Name of the modified variable</td>
     </tr>
     <tr>
       <td>value</td>
+      <td>string</td>
       <td>New value of the modified variable</td>
     </tr>
     <tr>
       <td>old_value</td>
+      <td>string</td>
       <td>Previous value of the modified variable</td>
     </tr>
   </tbody>
@@ -348,16 +370,19 @@ in the structure:</p>
   <thead>
     <tr>
       <th>field</th>
+      <th>type</th>
       <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>name</td>
+      <td>string</td>
       <td>Name of the deleted variable</td>
     </tr>
     <tr>
       <td>value</td>
+      <td>string</td>
       <td>Value of the deleted variable</td>
     </tr>
   </tbody>

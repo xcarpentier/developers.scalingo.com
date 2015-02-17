@@ -16,27 +16,33 @@ application are deployed.</p>
     <tr>
       <th>field</th>
       <th>type</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
+      <td>string</td>
       <td>unique ID</td>
     </tr>
     <tr>
       <td>app_id</td>
+      <td>string</td>
       <td>unique ID referencing the app this deployment belongs to</td>
     </tr>
     <tr>
       <td>created_at</td>
+      <td>date</td>
       <td>date of creation</td>
     </tr>
     <tr>
       <td>git_ref</td>
+      <td>string</td>
       <td>git SHA</td>
     </tr>
     <tr>
       <td>pusher</td>
+      <td>object</td>
       <td>embedded user who pushed the GIT reference</td>
     </tr>
   </tbody>
@@ -49,25 +55,46 @@ application are deployed.</p>
     <tr>
       <th>field</th>
       <th>type</th>
+      <th>description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
+      <td>string</td>
       <td>unique ID</td>
     </tr>
     <tr>
       <td>email</td>
+      <td>string</td>
       <td>email of user who pushed</td>
     </tr>
     <tr>
       <td>username</td>
+      <td>string</td>
       <td>username on Scalingo’s platform</td>
     </tr>
   </tbody>
 </table>
 
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"app_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54100930736f7563d5030000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-09-10T10:49:42.390+02:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"git_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef1234567890"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541010a6736f756f0a000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pusher"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54100245736f7563d5000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="list-the-deployments-of-an-app">List the deployments of an app</h2>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>

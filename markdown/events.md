@@ -9,13 +9,13 @@ applications.
 **Event attributes**
 
 {:.table}
-| field      | description                           |
-| ---------- | ------------------------------------- |
-| id         | unique ID of event                    |
-| created_at | date of creation                      |
-| user       | embedded user who generated the event |
-| type       | type of event (can be among delete_variable deployment edit_variable new_variable restart run scale) |
-| app_id     | unique ID of app the event belongs to |
+| field      | type   | description                              |
+| ---------- | ------ | ---------------------------------------- |
+| id         | string | unique ID of event                       |
+| created_at | date   | date of creation                         |
+| user       | object | embedded user who generated the event    |
+| type       | string | type of event (see below for the values) |
+| app_id     | string | unique ID of app the event belongs to    |
 
 According to the `type` field, extra data will be included
 in the structure:
@@ -47,9 +47,9 @@ _When:_ The application or some containers have been restarted
 `type=restart`
 
 {:.table}
-| field      | description                           |
-| ---------- | ------------------------------------- |
-| scope      | The scope of the restart, null is all |
+| field      | type  | description                           |
+| ---------- | ----- | ------------------------------------- |
+| scope      | array | The scope of the restart, null is all |
 
 ||| col |||
 
@@ -77,10 +77,10 @@ _When:_ The application has been scaled out
 `type=scale`
 
 {:.table}
-| field               | description                        |
-| ------------------- | ---------------------------------- |
-| previous_containers | The formation before the operation |
-| containers          | The formation after the request    |
+| field               | type   | description                        |
+| ------------------- | ------ | ---------------------------------- |
+| previous_containers | object | The formation before the operation |
+| containers          | object | The formation after the request    |
 
 ||| col |||
 
@@ -114,9 +114,9 @@ _When:_ A deployment has been done
 `type=deployment`
 
 {:.table}
-| field      | description                                                |
-| ---------- | ---------------------------------------------------------- |
-| deployment | The [Deployment](/deployment.html) associated to the event |
+| field      | type   | description                                                |
+| ---------- | -------| ---------------------------------------------------------- |
+| deployment | object | The [Deployment](/deployment.html) associated to the event |
 
 ||| col |||
 
@@ -148,9 +148,9 @@ _When:_ Someone runs `scalingo run` from the [CLI](http://cli.scalingo.com)
 `type=run`
 
 {:.table}
-| field      | description                           |
-| ---------- | ------------------------------------- |
-| command    | The command run by the user           |
+| field      | type   | description                           |
+| ---------- | ------ | ------------------------------------- |
+| command    | string | The command run by the user           |
 
 ||| col |||
 
@@ -178,10 +178,10 @@ _When:_ Each time a variable is added to the application
 `type=new_variable`
 
 {:.table}
-| field     | description                        |
-| --------- | ---------------------------------- |
-| name      | Name of the newly created variable |
-| value     | Value of the new variable          |
+| field     | type   | description                        |
+| --------- | ------ | ---------------------------------- |
+| name      | string | Name of the newly created variable |
+| value     | string | Value of the new variable          |
 
 ||| col |||
 
@@ -210,11 +210,11 @@ _When:_ Each time a variable is modified
 `type=edit_variable`
 
 {:.table}
-| field     | description                             |
-| --------- | --------------------------------------- |
-| name      | Name of the modified variable           |
-| value     | New value of the modified variable      |
-| old_value | Previous value of the modified variable |
+| field     | type   | description                             |
+| --------- | ------ | --------------------------------------- |
+| name      | string | Name of the modified variable           |
+| value     | string | New value of the modified variable      |
+| old_value | string | Previous value of the modified variable |
 
 ||| col |||
 
@@ -244,10 +244,10 @@ _When:_ Each time a variable is deleted
 `type=delete_variable`
 
 {:.table}
-| field | description                   |
-| ----- | ----------------------------- |
-| name  | Name of the deleted variable  |
-| value | Value of the deleted variable |
+| field | type   | description                   |
+| ----- | ------ | ----------------------------- |
+| name  | string | Name of the deleted variable  |
+| value | string | Value of the deleted variable |
 
 ||| col |||
 

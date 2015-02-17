@@ -9,11 +9,11 @@ Tool](http://cli.scalingo.com)).
 **Keys attributes**
 
 {:.table}
-| field      | type                              |
-| ---------- | --------------------------------- |
-| id         | unique ID of the key              |
-| name       | Given name to the key             |
-| content    | Raw content of the SSH public key |
+| field      | type   | description                       |
+| ---------- | ------ | --------------------------------- |
+| id         | string | unique ID of the key              |
+| name       | string | Given name to the key             |
+| content    | string | Raw content of the SSH public key |
 
 ||| col |||
 

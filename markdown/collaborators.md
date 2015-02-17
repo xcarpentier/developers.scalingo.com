@@ -5,12 +5,25 @@
 **Collaborator attributes**
 
 {:.table}
-| field          | type                                          |
-| -------------- | --------------------------------------------- |
-| id             | unique ID                                     |
-| email          | email address                                 |
-| username       | username ("N/A" if user has not chosen username yet or if invitation is still pending)  |
-| status         | status of the collaborator (pending: invitation not yet accepted, accepted: invitation has been accepted and collaborator is *active*) |
+| field          | type   | description                                   |
+| -------------- | ------ | --------------------------------------------- |
+| id             | string | unique ID                                     |
+| email          | string | email address                                 |
+| username       | string | username ("n/a": invitation is still pending) |
+| status         | string | __pending__: invitation not yet accepted, __accepted__: invitation has been accepted| 
+
+||| col |||
+
+Example object:
+
+```json
+{
+  "email": "foo@example.com",
+  "id": "54101e25736f7563d5060000",
+  "status": "accepted",
+  "username": "soulou"
+}
+```
 
 --- row ---
 

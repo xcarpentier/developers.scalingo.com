@@ -10,11 +10,23 @@ application'](/apps.html#restart-an-application) endpoint.
 **Environment variable attributes**
 
 {:.table}
-| field      | type                  |
-| ---------- | --------------------- |
-| id         | unique ID of variable |
-| name       | name                  |
-| value      | value                 |
+| field      | type   | description           |
+| ---------- | ------ | --------------------- |
+| id         | string | unique ID of variable |
+| name       | string | name                  |
+| value      | string | value                 |
+
+||| col |||
+
+Example object:
+
+```json
+{
+  "id": "541013a9736f7563d5050000",
+  "name": "MONGO_URL",
+  "value": "mongodb://user:password@host:port/db"
+}
+```
 
 --- row ---
 

@@ -5,11 +5,33 @@
 **Addon attributes**
 
 {:.table}
-| field          | type                                          |
-| -------------- | --------------------------------------------- |
-| plan           | embedded reference to Plan resource           |
-| resource_id    | resource reference                            |
-| addon_provider | embedded reference to AddonProvider resource  |
+| field          | type   | description                                   |
+| -------------- | ------ | --------------------------------------------- |
+| resource_id    | string | resource reference                            |
+| plan           | object | embedded reference to Plan resource           |
+| addon_provider | object | embedded reference to AddonProvider resource  |
+
+||| col |||
+
+Example object:
+
+```json
+{
+  "id" : "5415beca646173000b015000",
+  "plan" : {
+    "description" : "[Markdown description]",
+    "display_name" : "64MB Free tier",
+    "id" : "52fd2357356330032b080000",
+    "name" : "free",
+    "price" : 0.0
+  },
+  "resource_id" : "example_app_3083",
+  "addon_provider" : {
+    "id" : "scalingo-redis",
+    "name" : "Scalingo Redis"
+  }
+}
+```
 
 --- row ---
 
