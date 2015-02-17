@@ -13,6 +13,25 @@
 | type       | type of event (can be among delete_variable deployment edit_variable new_variable restart run scale) |
 | app_id     | unique ID of app the event belongs to |
 
+||| col |||
+
+Example object:
+
+```json
+{
+  "id": "54dcdd4a73636100011a0000",
+  "created_at": "2015-02-12T18:05:14.226+01:00",
+  "user": {
+      "username": "johndoe",
+      "email": "john@doe.com",
+      "id": "51e6bc626edfe40bbb000001"
+  },
+  "type": "run",
+  "app_id": "5343eccd646173000a140000",
+  "command": "rake db:migrate"
+}
+```
+
 --- row ---
 
 ## List the events of an app

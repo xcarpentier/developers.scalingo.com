@@ -10,7 +10,258 @@ For instance, the alias <code class="highlighter-rouge">www.example.com</code> o
 result in the presence of one resource domain.</p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><strong>Keys attributes</strong></p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>unique ID of the domain</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>hostname your want to associate with the app</td>
+    </tr>
+    <tr>
+      <td>tlscert (read)</td>
+      <td>subject of the submitted certificate</td>
+    </tr>
+    <tr>
+      <td>tlscert (write)</td>
+      <td>content of the SSL certificate you want to use</td>
+    </tr>
+    <tr>
+      <td>tlskey (read)</td>
+      <td>private key type and length</td>
+    </tr>
+    <tr>
+      <td>tlskey (write)</td>
+      <td>content of the private key used to generate the certificate</td>
+    </tr>
+    <tr>
+      <td>ssl (read-only)</td>
+      <td>flag if SSL with a custom certificate is enabled</td>
+    </tr>
+    <tr>
+      <td>validity (read-only)</td>
+      <td>once a certificate has been submitted, display the validity of it</td>
+    </tr>
+  </tbody>
+</table>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example object</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541067ec736f7504a5110000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ssl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tlscert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/C=FR/ST=Some-State/O=Internet Widgits Pty Ltd/CN=example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tlskey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA private key - 2048 bytes"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"validity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-05T19:57:21.000+02:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="list-all-the-domains-of-an-application">List all the domains of an application</h2>
 
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div>
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p>GET https://api.scalingo.com/v1/apps[:app]/domains</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\ </span>
+ -X GET https://api.scalingo.com/v1/apps/example-app/domains
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541067f7736f7504a5140000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example2.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ssl"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541067ec736f7504a5110000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ssl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tlscert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/C=FR/ST=Some-State/O=Internet Widgits Pty Ltd/CN=example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tlskey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA private key - 2048 bytes"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"validity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-05T19:57:21.000+02:00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="show-a-specific-domain-of-an-application">Show a specific domain of an application</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">GET https://api.scalingo.com/v1/apps/[:app]/domains/[:domain_id]</code></p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+ -X GET https://api.scalingo.com/v1/apps/example-app/domains/541067ec736f7504a5110000
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541067ec736f7504a5110000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ssl"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="unlink-a-domain-name-from-an-application">Unlink a domain name from an application</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">DELETE https://api.scalingo.com/v1/apps/[:app]/domains/[:domain_id]</code></p>
+
+<p>Disassociate instantly a domain name with an app. If the domain is still
+<a href="http://doc.scalingo.com/app/domain">CNAME-ed</a>, it will respond with a 404 error.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X DELETE https://api.scalingo.com/v1/apps/example-app/domains/541067ec736f7504a5110000
+</code></pre>
+</div>
+
+<p>Returns 204 No Content</p>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="link-a-domain-name-to-an-application">Link a domain name to an application</h2>
+
+<p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/domains</code></p>
+
+<p>Parameters</p>
+
+<ul>
+  <li><code class="highlighter-rouge">domain.name</code>: Hostname you want to add</li>
+  <li><code class="highlighter-rouge">domain.tlscert</code> - optional: SSL Certificate you want to associate with the domain</li>
+  <li><code class="highlighter-rouge">domain.tlskey</code> - optional: Private key used to create the SSL certificate</li>
+</ul>
+
+<p>If the certificate or the key is not valid, a 422 “unprocessable entity” is returned
+Otherwise return 201</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Request example (without SSL):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST https://api.scalingo.com/v1/apps/example-app/domains -d <span class="se">\</span>
+  <span class="s1">'{
+    "domain" : {
+      "name" : "example.com"
+    }
+  }'</span>
+</code></pre>
+</div>
+
+<p>Returns 201 Created</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541067ec736f7504a5110000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ssl"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Request example (with SSL):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X POST https://api.scalingo.com/v1/apps/example-app/domains -d <span class="se">\</span>
+  <span class="s1">'{
+    "domain" : {
+      "name" : "example.com",
+      "tlscert" : "&lt;cert&gt;",
+      "tlskey" : "&lt;key&gt;"
+     }
+   }'</span>
+</code></pre>
+</div>
+
+<p>Returns 201 Created</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541067ec736f7504a5110000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ssl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tlscert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/C=FR/ST=Some-State/O=Internet Widgits Pty Ltd/CN=example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tlskey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA private key - 2048 bytes"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-05T19:57:21.000+02:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="update-a-domain-name">Update a domain name</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]/domains/[:domain_id]</code></p>
+
+<p>Parameters</p>
+
+<ul>
+  <li><code class="highlighter-rouge">domain.tlscert</code> - optional: SSL Certificate you want to associate with the domain</li>
+  <li><code class="highlighter-rouge">domain.tlskey</code> - optional: Private key used to create the SSL certificate</li>
+</ul>
+
+<p>As you may have noticed you can’t update the name itself, instead of modifying it juste
+create another Domain and delete the one you wanted to modify.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X PATCH https://api.scalingo.com/v1/apps/example-app/domains/541067ec736f7504a5110000 -d <span class="se">\</span>
+  <span class="s1">'{
+    "domain" : {
+      "tlscert" : "&lt;cert&gt;",
+      "tlskey" : "&lt;key&gt;"
+    }
+  }'</span> 
+</code></pre>
+</div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"541067ec736f7504a5110000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ssl"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tlscert"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/C=FR/ST=Some-State/O=Internet Widgits Pty Ltd/CN=example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tlskey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RSA private key - 2048 bytes"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"validity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-05T19:57:21.000+02:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+</div></div>
