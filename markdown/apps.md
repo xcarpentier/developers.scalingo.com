@@ -394,13 +394,28 @@ Returns 200 OK
 
 --- row ---
 
-## Run a container in the environment of your application
+## Run a job in the environment of your application
 
 Similar to `scalingo run`
 
 --- row ---
 
 `POST https://api.scalingo.com/v1/apps/[:app]/run`
+
+Run an interactive job, it can be any command which will be executed in the
+environment your application.
+
+<blockquote>
+  We do not handle detached jobs yet, each job has to be attached to be executed,
+  it will be canceled after 5 without action have been waited.
+</blockquote>
+
+See [how to handle the returned `attach_url`](/jobs.html)
+
+Parameters:
+
+* `command`: Command line which has to be run (example: "bash")
+* `env`: Environment variables to inject into the container (additionaly to those of your apps)
 
 ||| col |||
 
@@ -410,8 +425,12 @@ Example request:
 curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
   -X POST 'https://api.scalingo.com/v1/apps/example-app/run -d \
   '{
-    "command": "bundle exec rails console"
+    "command": "bundle exec rails console",
+    "env": {
+      "VAR1" => "VAL1"
+    }
   }'
+```
 
 Returns 200 OK
 
@@ -429,3 +448,9 @@ Returns 200 OK
   "attach_url": "http://run-1.scalingo.com:5000/f15d8c7fb4170c4ef14b63b2b265c8fa3dbf4a5882de19682a21f6243ae332c6"
 }
 ```
+
+--- row ---
+
+## Upload file to your job container
+
+

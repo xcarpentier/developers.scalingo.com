@@ -427,12 +427,29 @@ collaborators</li>
 </div>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h2 id="run-a-container-in-the-environment-of-your-application">Run a container in the environment of your application</h2>
+<h2 id="run-a-job-in-the-environment-of-your-application">Run a job in the environment of your application</h2>
 
 <p>Similar to <code class="highlighter-rouge">scalingo run</code></p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/run</code></p>
+
+<p>Run an interactive job, it can be any command which will be executed in the
+environment your application.</p>
+
+<blockquote>
+  We do not handle detached jobs yet, each job has to be attached to be executed,
+  it will be canceled after 5 without action have been waited.
+</blockquote>
+
+<p>See <a href="/jobs.html">how to handle the returned <code class="highlighter-rouge">attach_url</code></a></p>
+
+<p>Parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">command</code>: Command line which has to be run (example: “bash”)</li>
+  <li><code class="highlighter-rouge">env</code>: Environment variables to inject into the container (additionaly to those of your apps)</li>
+</ul>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example request:</p>
@@ -440,24 +457,32 @@ collaborators</li>
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
   -X POST <span class="s1">'https://api.scalingo.com/v1/apps/example-app/run -d \
   '</span><span class="o">{</span>
-    <span class="s2">"command"</span>: <span class="s2">"bundle exec rails console"</span>
+    <span class="s2">"command"</span>: <span class="s2">"bundle exec rails console"</span>,
+    <span class="s2">"env"</span>: <span class="o">{</span>
+      <span class="s2">"VAR1"</span> <span class="o">=</span>&gt; <span class="s2">"VAL1"</span>
+    <span class="o">}</span>
   <span class="o">}</span><span class="s1">'
-
-Returns 200 OK
-
-```json
-{
-  "container": {
-    "id" : "5250424112dba4edf0000024",
-    "type" : "job",
-    "type_index" : 0,
-    "created_at" : "2015-02-17T22:10:32.692+01:00",
-    "memory" : 5.36870912e+08,
-    "state" : "booting",
-    "app" : { "name": "example-app", ... }
-  },
-  "attach_url": "http://run-1.scalingo.com:5000/f15d8c7fb4170c4ef14b63b2b265c8fa3dbf4a5882de19682a21f6243ae332c6"
-}
 </span></code></pre>
 </div>
-</div></div>
+
+<p>Returns 200 OK</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"container"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5250424112dba4edf0000024"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"job"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_index"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-17T22:10:32.692+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"memory"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">5.36870912e+08</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"booting"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example-app"</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"attach_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://run-1.scalingo.com:5000/f15d8c7fb4170c4ef14b63b2b265c8fa3dbf4a5882de19682a21f6243ae332c6"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="upload-file-to-your-job-container">Upload file to your job container</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div>

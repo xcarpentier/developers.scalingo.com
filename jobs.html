@@ -1,0 +1,91 @@
+---
+layout: default
+title: Application Jobs
+---
+
+<div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'><h1 id="application-jobs">Application Jobs</h1>
+
+<p>When you <a href="/apps.html#run-a-job-in-the-environment-of-your-application">request to run a job</a>,
+you will receive a <code class="highlighter-rouge">attach_url</code>. This page explains how to use this endpoint.</p>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="access-your-job-container">Access your job container</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">CONNECT [:attach_url]</code></p>
+
+<p>To use this endpoint you have to hijack the HTTP connection. It’s pretty simple
+actually, when you’re doing a HTTP request, a TCP connection is created. HTTP
+hijacking consist in turning this connection into a full bidirectional
+connection.</p>
+
+<p>You can find an example of implementation in <a href="https://github.com/Soulou/go-http-hijack-client">this
+project</a></p>
+
+<p>For your information there is <a href="https://github.com/Soulou/go-http-echo-hijack">an example of
+server</a> also.</p>
+
+<p>HTTP is used to handle the routing and the headers, then the connection is used
+rawly to exchange data.</p>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="update-your-job-container">Update your job container</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">PUT [:attach_url]</code></p>
+
+<p>Send information to the container to update its state. As containers are
+interactive and that most software you may be using are using <code class="highlighter-rouge">libreadline</code>,
+your should notify the container when the size of the terminal is changed for
+instance.</p>
+
+<p>Parameters</p>
+
+<ul>
+  <li><code class="highlighter-rouge">width</code>: Width for the remote terminal</li>
+  <li><code class="highlighter-rouge">height</code>: Height for the remote terminal</li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  -X PUT <span class="o">[</span>:attach_url] -d <span class="se">\</span>
+  <span class="s1">'{
+    "width": 80,
+    "height": 25
+  }'</span>
+</code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="upload-a-file-to-your-job-container">Upload a file to your job container</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">POST [:attach_url]/files</code></p>
+
+<p>It may happen that you require a file to be present in your temporary
+container, for a batch or anything else, the transfer is done via a
+multipart form.</p>
+
+<blockquote>
+  The <code>Content-Type</code> of this request is not <code>application/json</code>, it should be <code>multipart/form-data; boundary=[:boundary]</code>
+</blockquote>
+
+<p>It has to be done before attaching to the container. Files ca be found in the directory <code class="highlighter-rouge">/tmp/uploads</code></p>
+
+<p>Form parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">file</code>: contain the name of the file and its content.</li>
+</ul>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<p>Example request:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl --form <span class="nv">file</span><span class="o">=</span>@mysql_dump.tar.gz <span class="o">[</span>:attach_url]/files
+</code></pre>
+</div>
+
+<p>Returns 200 OK Withoutc content</p>
+</div></div>
