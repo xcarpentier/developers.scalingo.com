@@ -305,6 +305,16 @@ If the server returns a 50x status code, something wrong happened on our side.
 You can't do anything about it, you can be sure that our team got notifications
 for it and that it will be fixed really quickly.
 
+||| col |||
+
+Example of error 500:
+
+```json
+{
+  "error": "Internal error occured, we're on it!"
+}
+```
+
 --- row ---
 
 # Pagination
