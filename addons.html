@@ -97,7 +97,12 @@ title: Addons
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="provision-an-addon">Provision an addon</h2>
 
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/addons</code></p>
+
+<p>Provision the addon defined by the <code class="highlighter-rouge">addon_provider</code> at the given plan.
+The resource should be instantly available, it modifies environment
+variables.</p>
 
 <p>Parameters:</p>
 
@@ -116,7 +121,15 @@ title: Addons
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="upgrade-an-addon">Upgrade an addon</h2>
 
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id]</code></p>
+
+<p>Change your addon plan. The endpoint will query the addon provider to
+upgrade your plan to a new one.</p>
+
+<p>Be cautious though, the operation might fail. The provider may refuse to
+downgrade an addon if the operation is invalid. Example: You have a 3GB
+database and you want to return to the free tier database at 512MB.</p>
 
 <p>Parameters:</p>
 
@@ -126,14 +139,12 @@ title: Addons
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
-  -X POST https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] <span class="se">\</span>
+  -X PATCH https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] <span class="se">\</span>
   -d <span class="s1">'{"addon": {"plan_id": "2"}}'</span>
 </code></pre>
 </div>
 
-<p>Response:</p>
-
-<p>200 OK</p>
+<p>Returns 200 OK</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"vars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"VAR1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"VAR2"</span><span class="p">],</span><span class="w">
@@ -141,4 +152,22 @@ title: Addons
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<h2 id="remove-an-addon">Remove an addon</h2>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p><code class="highlighter-rouge">DELETE htttps://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id]</code></p>
+
+<p>Request deprovisionning of the addon. This may be a dangerous operation as the
+addon provider will certainly erase all the data related to your application.
+Be cautious when deleting addons, be sure of what you’re doing.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
+  -X DELETE https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] <span class="se">\</span>
+</code></pre>
+</div>
+
+<p>Returns 204 No Content</p>
 </div></div>

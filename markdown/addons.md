@@ -78,7 +78,13 @@ Returns 201 Created
 
 ## Provision an addon
 
+--- row ---
+
 `POST https://api.scalingo.com/v1/apps/[:app]/addons`
+
+Provision the addon defined by the `addon_provider` at the given plan.
+The resource should be instantly available, it modifies environment
+variables.
 
 Parameters:
 
@@ -97,7 +103,16 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH
 
 ## Upgrade an addon
 
+--- row ---
+
 `PATCH https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id]`
+
+Change your addon plan. The endpoint will query the addon provider to
+upgrade your plan to a new one.
+
+Be cautious though, the operation might fail. The provider may refuse to
+downgrade an addon if the operation is invalid. Example: You have a 3GB
+database and you want to return to the free tier database at 512MB.
 
 Parameters:
 
@@ -107,13 +122,11 @@ Parameters:
 
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
-  -X POST https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] \
+  -X PATCH https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] \
   -d '{"addon": {"plan_id": "2"}}'
 ```
 
-Response:
-
-200 OK
+Returns 200 OK
 
 ```json
 {
@@ -121,3 +134,24 @@ Response:
   "message": "<custom message from the addon provider>"
 }
 ```
+
+--- row ---
+
+## Remove an addon
+
+--- row ---
+
+`DELETE htttps://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id]`
+
+Request deprovisionning of the addon. This may be a dangerous operation as the
+addon provider will certainly erase all the data related to your application.
+Be cautious when deleting addons, be sure of what you're doing.
+
+||| col |||
+
+```shell
+curl -H "Accept: application/json" -H "Content-Type: application/json" -u :$AUTH_TOKEN \
+  -X DELETE https://api.scalingo.com/v1/apps/[:app]/addons/[:addon_id] \
+```
+
+Returns 204 No Content
