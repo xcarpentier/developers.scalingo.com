@@ -157,7 +157,33 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" -u ":$AUT
 
 --- row ---
 
-The API sends and receives JSON, XML is not accepted, please ensure JSON is used.
+The API sends and receives JSON, XML is not accepted, please ensure JSON is used. All the
+returned object are `object`, there is never an `array` as root element.
+
+Resources are rooted, it means that they have a parent key corresponding to its name. This
+key may be plural if a collection of items is returned.
+
+||| col |||
+
+```js
+{
+  "app": {
+    // application
+  }
+}
+```
+
+```js
+{
+  "apps": [
+    {
+      // application
+    }, {
+      // application
+    }
+  ]
+}
+```
 
 --- row ---
 

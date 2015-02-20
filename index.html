@@ -147,9 +147,34 @@ authentication token as password, the username can be empty.</p>
 <h2 id="json">JSON</h2>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<p>The API sends and receives JSON, XML is not accepted, please ensure JSON is used.</p>
+<p>The API sends and receives JSON, XML is not accepted, please ensure JSON is used. All the
+returned object are <code class="highlighter-rouge">object</code>, there is never an <code class="highlighter-rouge">array</code> as root element.</p>
 
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p>Resources are rooted, it means that they have a parent key corresponding to its name. This
+key may be plural if a collection of items is returned.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"app"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="c1">// application</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span>
+  <span class="s2">"apps"</span><span class="err">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="c1">// application</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="c1">// application</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h2 id="dates">Dates</h2>
 
 <p>All the dates are sent with the ISO 8601: YYYY-MM-DDThh:mm:ss.μμμZ</p>
