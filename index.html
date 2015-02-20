@@ -118,7 +118,7 @@ Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted
 </code></pre>
 </div>
 
-<p>Return 201 Created</p>
+<p>Returns 201 Created</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"authentication_token"</span><span class="p">:</span><span class="s2">"abcdef0123456789-"</span><span class="w">
@@ -215,12 +215,13 @@ key may be plural if a collection of items is returned.</p>
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h1 id="errors">Errors</h1>
 
-<h3 id="client-errors---status-codes-4xx">Client errors - Status codes: 4xx</h3>
+<h2 id="client-errors---status-codes-4xx">Client errors - Status codes: 4xx</h2>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<ul>
-  <li>JSON is wrongly formatted - error 400</li>
-</ul>
+<h3 id="invalid-json---400-bad-request">Invalid JSON - 400 Bad Request</h3>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p>The JSON you’ve sent in the payload is is wrongly formatted.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> -u <span class="s2">":</span><span class="nv">$AUTH_TOKEN</span><span class="s2">"</span> <span class="se">\ </span>
@@ -237,10 +238,9 @@ key may be plural if a collection of items is returned.</p>
 </div>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<ul>
-  <li>Your account has exceeded the free tier, please add a payment card - error 402</li>
-</ul>
+<h3 id="exceeding-free-tier---402-payment-required">Exceeding free tier - 402 Payment Required</h3>
 
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p>If you try to do an action unallowed in the free tier, you will get an error 402 Payment Required.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
@@ -254,7 +254,7 @@ key may be plural if a collection of items is returned.</p>
 </code></pre>
 </div>
 
-<p>Returnes 402 Payment Required if user is not allowed to create a new app.</p>
+<p>Returns 402 Payment Required if user is not allowed to create a new app.</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sorry, you need to verify your account (billing profile and payment card) to create a new app"</span><span class="p">,</span><span class="w">
@@ -264,9 +264,10 @@ key may be plural if a collection of items is returned.</p>
 </div>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<ul>
-  <li>Their is a missing field in JSON payload - error 422</li>
-</ul>
+<h3 id="invalid-field---422-unprocessable-entity">Invalid field - 422 Unprocessable Entity</h3>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p>There is an invalid field in the JSON payload.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> -u <span class="s2">":</span><span class="nv">$AUTH_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
@@ -285,9 +286,10 @@ key may be plural if a collection of items is returned.</p>
 </div>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<ul>
-  <li>Invalid data were sent in the payload - error 422</li>
-</ul>
+<h3 id="invalid-data---422-unprocessable-entity">Invalid data - 422 Unprocessable Entity</h3>
+
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<p>Invalid data were sent in the payload.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> -u <span class="s2">":</span><span class="nv">$AUTH_TOKEN</span><span class="s2">"</span> <span class="se">\ </span>
@@ -313,6 +315,7 @@ key may be plural if a collection of items is returned.</p>
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <h3 id="server-errors---50x">Server errors - 50x</h3>
 
+</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p>If the server returns a 50x status code, something wrong happened on our side.
 You can’t do anything about it, you can be sure that our team got notifications
 for it and that it will be fixed really quickly.</p>

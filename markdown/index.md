@@ -123,7 +123,7 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" \
  }'
 ```
 
-Return 201 Created
+Returns 201 Created
 
 ```json
 {
@@ -229,11 +229,15 @@ fmt.Println(date)
 
 # Errors
 
-### Client errors - Status codes: 4xx
+## Client errors - Status codes: 4xx
 
 --- row ---
 
-* JSON is wrongly formatted - error 400
+### Invalid JSON - 400 Bad Request
+
+--- row ---
+
+The JSON you've sent in the payload is is wrongly formatted.
 
 ||| col |||
 
@@ -252,7 +256,9 @@ Returns HTTP/1.1 400 Bad Request
 
 --- row ---
 
-* Your account has exceeded the free tier, please add a payment card - error 402
+### Exceeding free tier - 402 Payment Required
+
+--- row ---
 
 If you try to do an action unallowed in the free tier, you will get an error 402 Payment Required.
 
@@ -268,7 +274,7 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' -u ":$AUT
   }'
 ```
 
-Returnes 402 Payment Required if user is not allowed to create a new app.
+Returns 402 Payment Required if user is not allowed to create a new app.
 
 ```json
 {
@@ -279,7 +285,11 @@ Returnes 402 Payment Required if user is not allowed to create a new app.
 
 --- row ---
 
-* Their is a missing field in JSON payload - error 422
+### Invalid field - 422 Unprocessable Entity
+
+--- row ---
+
+There is an invalid field in the JSON payload.
 
 ||| col |||
 
@@ -300,7 +310,11 @@ Returns HTTP/1.1 422 Unprocessable Entity
 
 --- row ---
 
-* Invalid data were sent in the payload - error 422
+### Invalid data - 422 Unprocessable Entity
+
+--- row ---
+
+Invalid data were sent in the payload.
 
 ||| col |||
 
@@ -327,6 +341,8 @@ Returns HTTP/1.1 422 Unprocessable Entity
 --- row ---
 
 ### Server errors - 50x
+
+--- row ---
 
 If the server returns a 50x status code, something wrong happened on our side.
 You can't do anything about it, you can be sure that our team got notifications
