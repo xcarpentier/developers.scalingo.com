@@ -87,7 +87,19 @@ Basic HTTP Auth. The API is HTTPS only, so credentials are always sent encrypted
 
 --- row ---
 
-## Get an authentication token
+## Get your API token from our dashboard
+
+You can obtain your API token from your profile from the dashboard:
+
+[Get your API Token](https://my.scalingo.com/apps/profile)
+
+--- row ---
+
+## Get your API token from the API
+
+Otherwise your can get your API token from the API directly:
+
+--- row ---
 
 `POST https://api.scalingo.com/v1/users/sign_in`
 

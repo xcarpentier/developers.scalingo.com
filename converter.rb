@@ -48,7 +48,7 @@ sidebar_code_end_tag   = "</div>"
 
 list_of_resources = {}
 
-files = File.join "markdown", "*"
+files = File.join "markdown", "*.md"
 Dir.glob(files).sort.each{|input_filename|
 
   basename = File.basename input_filename, ".md"
