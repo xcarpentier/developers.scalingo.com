@@ -87,4 +87,4 @@ Example request:
 curl --form file=@mysql_dump.tar.gz [:attach_url]/files
 ```
 
-Returns 200 OK Withoutc content
+Returns 200 OK Without content
