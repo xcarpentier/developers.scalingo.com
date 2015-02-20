@@ -1,11 +1,11 @@
-# Application Jobs
+# One-off Containers
 
-When you [request to run a job](/apps.html#run-a-job-in-the-environment-of-your-application),
+When you [request to one-off container](/apps.html#run-a-one-off-container),
 you will receive a `attach_url`. This page explains how to use this endpoint.
 
 --- row ---
 
-## Access your job container
+## Access your container
 
 --- row ---
 
@@ -27,7 +27,7 @@ rawly to exchange data.
 
 --- row ---
 
-## Update your job container
+## Update your container
 
 --- row ---
 
@@ -59,7 +59,7 @@ curl -H 'Content-Type: application/json' -H 'Accept: application/json' \
 
 --- row ---
 
-## Upload a file to your job container
+## Upload a file to your container
 
 --- row ---
 

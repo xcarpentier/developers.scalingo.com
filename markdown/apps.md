@@ -394,7 +394,7 @@ Returns 200 OK
 
 --- row ---
 
-## Run a job in the environment of your application
+## Run a one-off container
 
 Similar to `scalingo run`
 
@@ -402,15 +402,18 @@ Similar to `scalingo run`
 
 `POST https://api.scalingo.com/v1/apps/[:app]/run`
 
-Run an interactive job, it can be any command which will be executed in the
+To run an interactive task, you have to start a one-off container. As its name
+mean it's a container you will start for a given task and which will be
+destroyed after it.  It can be any command which will be executed in the
 environment your application.
 
 <blockquote>
-  We do not handle detached jobs yet, each job has to be attached to be executed,
-  it will be canceled after 5 without action have been waited.
+  We do not handle detached commands yet, each one-off container has to be
+  attached to be executed, it will be canceled after 5 without action have been
+  waited.
 </blockquote>
 
-See [how to handle the returned `attach_url`](/jobs.html)
+See [how to handle the returned `attach_url`](/one-off.html)
 
 Parameters:
 
@@ -448,9 +451,3 @@ Returns 200 OK
   "attach_url": "http://run-1.scalingo.com:5000/f15d8c7fb4170c4ef14b63b2b265c8fa3dbf4a5882de19682a21f6243ae332c6"
 }
 ```
-
---- row ---
-
-## Upload file to your job container
-
-

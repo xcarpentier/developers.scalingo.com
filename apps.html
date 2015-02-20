@@ -427,22 +427,25 @@ collaborators</li>
 </div>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h2 id="run-a-job-in-the-environment-of-your-application">Run a job in the environment of your application</h2>
+<h2 id="run-a-one-off-container">Run a one-off container</h2>
 
 <p>Similar to <code class="highlighter-rouge">scalingo run</code></p>
 
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/run</code></p>
 
-<p>Run an interactive job, it can be any command which will be executed in the
+<p>To run an interactive task, you have to start a one-off container. As its name
+mean it’s a container you will start for a given task and which will be
+destroyed after it.  It can be any command which will be executed in the
 environment your application.</p>
 
 <blockquote>
-  We do not handle detached jobs yet, each job has to be attached to be executed,
-  it will be canceled after 5 without action have been waited.
+  We do not handle detached commands yet, each one-off container has to be
+  attached to be executed, it will be canceled after 5 without action have been
+  waited.
 </blockquote>
 
-<p>See <a href="/jobs.html">how to handle the returned <code class="highlighter-rouge">attach_url</code></a></p>
+<p>See <a href="/one-off.html">how to handle the returned <code class="highlighter-rouge">attach_url</code></a></p>
 
 <p>Parameters:</p>
 
@@ -481,8 +484,4 @@ environment your application.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 </div>
-
-</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
-<h2 id="upload-file-to-your-job-container">Upload file to your job container</h2>
-
-</div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div>
+</div></div>
