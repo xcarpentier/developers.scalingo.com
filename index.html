@@ -238,6 +238,33 @@ key may be plural if a collection of items is returned.</p>
 
 </div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <ul>
+  <li>Your account has exceeded the free tier, please add a payment card - error 402</li>
+</ul>
+
+<p>If you try to do an action unallowed in the free tier, you will get an error 402 Payment Required.</p>
+
+</div><div class='col-xs-12 col-sm-6 sidebar-code'>
+<div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s1">'Content-Type: application/json'</span> -H <span class="s1">'Accept: application/json'</span> -u <span class="s2">":</span><span class="nv">$AUTH_TOKEN</span><span class="s2">"</span> <span class="se">\</span>
+  -X POST https://api.scalingo.com/v1/apps -d <span class="se">\</span>
+  <span class="s1">'{
+    "app" : {
+      "name" : "my-new-app"
+    }
+  }'</span>
+</code></pre>
+</div>
+
+<p>Returnes 402 Payment Required if user is not allowed to create a new app.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sorry, you need to verify your account (billing profile and payment card) to create a new app"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://my.scalingo.com/apps/billing"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+</div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
+<ul>
   <li>Their is a missing field in JSON payload - error 422</li>
 </ul>
 

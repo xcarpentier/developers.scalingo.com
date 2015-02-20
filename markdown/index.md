@@ -252,6 +252,33 @@ Returns HTTP/1.1 400 Bad Request
 
 --- row ---
 
+* Your account has exceeded the free tier, please add a payment card - error 402
+
+If you try to do an action unallowed in the free tier, you will get an error 402 Payment Required.
+
+||| col |||
+
+```shell
+curl -H 'Content-Type: application/json' -H 'Accept: application/json' -u ":$AUTH_TOKEN" \
+  -X POST https://api.scalingo.com/v1/apps -d \
+  '{
+    "app" : {
+      "name" : "my-new-app"
+    }
+  }'
+```
+
+Returnes 402 Payment Required if user is not allowed to create a new app.
+
+```json
+{
+    "error": "Sorry, you need to verify your account (billing profile and payment card) to create a new app",
+    "url": "https://my.scalingo.com/apps/billing"
+}
+```
+
+--- row ---
+
 * Their is a missing field in JSON payload - error 422
 
 ||| col |||
