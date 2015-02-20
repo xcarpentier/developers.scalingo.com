@@ -38,7 +38,7 @@ Example object:
 
 All the variables are returned, without interpolating anything.
 
-Parameters:
+### Parameters
 
 * `aliases`: (default: `true`)
   

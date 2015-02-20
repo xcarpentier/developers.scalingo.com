@@ -38,7 +38,7 @@ interactive and that most software you may be using are using `libreadline`,
 your should notify the container when the size of the terminal is changed for
 instance.
 
-Parameters
+### Parameters
 
 * `width`: Width for the remote terminal
 * `height`: Height for the remote terminal

@@ -108,7 +108,7 @@ Returns 200 OK
 
 Allow a new SSH key pair to deploy applications
 
-Parameters:
+### Parameters
 
 * `key.name`: Name of the key you want to add
 * `key.content`: Public SSH key content (ie. content of `~/.ssh/id_rsa.pub`)

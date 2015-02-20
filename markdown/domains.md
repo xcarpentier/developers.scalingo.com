@@ -131,7 +131,7 @@ Returns 204 No Content
 
 `POST https://api.scalingo.com/v1/apps/[:app]/domains`
 
-Parameters
+### Parameters
 
 * `domain.name`: Hostname you want to add
 * `domain.tlscert` - optional: SSL Certificate you want to associate with the domain
@@ -139,6 +139,11 @@ Parameters
 
 If the certificate or the key is not valid, a 422 "unprocessable entity" is returned
 Otherwise return 201
+
+### Limit
+
+There is a hard limit of 5 custom domains per application, if you need more:
+[contact us](mailto:support@scalingo.com)
 
 ||| col |||
 

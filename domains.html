@@ -155,7 +155,7 @@ result in the presence of one resource domain.</p>
 
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/domains</code></p>
 
-<p>Parameters</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">domain.name</code>: Hostname you want to add</li>
@@ -165,6 +165,11 @@ result in the presence of one resource domain.</p>
 
 <p>If the certificate or the key is not valid, a 422 “unprocessable entity” is returned
 Otherwise return 201</p>
+
+<h3 id="limit">Limit</h3>
+
+<p>There is a hard limit of 5 custom domains per application, if you need more:
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#115;&#099;&#097;&#108;&#105;&#110;&#103;&#111;&#046;&#099;&#111;&#109;">contact us</a></p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Request example (without SSL):</p>

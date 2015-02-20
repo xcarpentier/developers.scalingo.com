@@ -86,10 +86,15 @@ Provision the addon defined by the `addon_provider` at the given plan.
 The resource should be instantly available, it modifies environment
 variables.
 
-Parameters:
+### Parameters
 
 * `addon.addon_provider_id`
 * `addon.plan_id`
+
+Free usage limit:
+
+You can only use free addons without having defined [a payment
+method](https://my.scalingo.com/apps/billing).
 
 ||| col |||
 
@@ -114,9 +119,15 @@ Be cautious though, the operation might fail. The provider may refuse to
 downgrade an addon if the operation is invalid. Example: You have a 3GB
 database and you want to return to the free tier database at 512MB.
 
-Parameters:
+### Parameters
 
 * `addon.plan_id`
+
+Free usage limit:
+
+You can only use free addons without having defined [a payment
+method](https://my.scalingo.com/apps/billing).
+
 
 ||| col |||
 

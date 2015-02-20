@@ -104,12 +104,17 @@ title: Addons
 The resource should be instantly available, it modifies environment
 variables.</p>
 
-<p>Parameters:</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">addon.addon_provider_id</code></li>
   <li><code class="highlighter-rouge">addon.plan_id</code></li>
 </ul>
+
+<p>Free usage limit:</p>
+
+<p>You can only use free addons without having defined <a href="https://my.scalingo.com/apps/billing">a payment
+method</a>.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>
@@ -131,11 +136,16 @@ upgrade your plan to a new one.</p>
 downgrade an addon if the operation is invalid. Example: You have a 3GB
 database and you want to return to the free tier database at 512MB.</p>
 
-<p>Parameters:</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">addon.plan_id</code></li>
 </ul>
+
+<p>Free usage limit:</p>
+
+<p>You can only use free addons without having defined <a href="https://my.scalingo.com/apps/billing">a payment
+method</a>.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <div class="highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Content-Type: application/json"</span> -u :<span class="nv">$AUTH_TOKEN</span> <span class="se">\</span>

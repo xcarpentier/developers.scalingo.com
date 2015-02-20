@@ -6,7 +6,7 @@
 
 To get an authenticated URL, see [Application#logs](/apps.html#access-to-the-application-logs)
 
-Parameters:
+### Parameters
 
 * `n`: How many lines of the history should be returned
 * `stream` (default false): toggle streaming

@@ -45,11 +45,16 @@ Example object:
 
 `POST https://api.scalingo.com/apps`
 
-Parameters:
+### Parameters
 
 * `app.name`: Should have between 6 and 32 lower case alphanumerical characters
   and hyphens, it can't have an hyphen at the beginning or at the end, nor two
   hyphens in a row.
+
+### Free usage limit
+
+You can only have 3 applications without having defined [a payment
+method](https://my.scalingo.com/apps/billing).
 
 ||| col |||
 
@@ -186,12 +191,22 @@ pointing to an `operation` resource.
 The request returns the complete formation of containers event those which are
 not currently scaled.
 
-Parameters:
+### Parameters
 
 * `containers`: Array of the containers you want to scale.
   Each `containers`:
   * `container.name`: Name of the container you want to scale
   * `container.amount`: Final amount of container of this type
+
+### Free usage limit
+
+You can only have 1 'web' container without having defined [a payment
+method](https://my.scalingo.com/apps/billing).
+
+### Limit
+
+There is a hard limit of 10 containers of a given type per application, if you need more:
+[contact us](mailto:support@scalingo.com)
 
 ||| col |||
 
@@ -248,7 +263,7 @@ app status has switched to "running" again.
 You can follow the operation progress by following the `Location` header,
 pointing to an `operation` resource.
 
-Parameters:
+### Parameters
 
 * `scope`: Array of containers you want to restart.
   * If empty or nil: restart everything
@@ -295,7 +310,7 @@ Returns 204 No Content
 
 `POST https://api.scalingo.com/v1/apps/[:app]/rename`
 
-Parameters:
+### Parameters
 
 * `current_name`: As validation, should equal the name of the app
 * `new_name`: Target name of rename operation
@@ -330,7 +345,7 @@ Returns 200 OK
 
 `PATCH https://api.scalingo.com/v1/apps/[:app]`
 
-Parameters
+### Parameters
 
 * `app.owner.email`: email of the new owner of the app, should be part of the
   collaborators
@@ -415,7 +430,7 @@ environment your application.
 
 See [how to handle the returned `attach_url`](/one-off.html)
 
-Parameters:
+### Parameters
 
 * `command`: Command line which has to be run (example: "bash")
 * `env`: Environment variables to inject into the container (additionaly to those of your apps)

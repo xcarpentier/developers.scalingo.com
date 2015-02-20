@@ -111,7 +111,7 @@ Example object:
 The endpoint return the list of the addons you can provision for your app,
 including the different available plans.
 
-Parameters:
+### Parameters
 
 * `category_id`: Filter the addon providers per category
 

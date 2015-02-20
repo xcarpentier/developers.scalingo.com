@@ -82,13 +82,18 @@ title: Applications
 </div><div class='hidden-xs col-xs-12 col-sm-6 sidebar-code'></div></div><div class='row'><div class='col-xs-12 col-sm-6 sidebar-text'>
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/apps</code></p>
 
-<p>Parameters:</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">app.name</code>: Should have between 6 and 32 lower case alphanumerical characters
 and hyphens, it can’t have an hyphen at the beginning or at the end, nor two
 hyphens in a row.</li>
 </ul>
+
+<h3 id="free-usage-limit">Free usage limit</h3>
+
+<p>You can only have 3 applications without having defined <a href="https://my.scalingo.com/apps/billing">a payment
+method</a>.</p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example</p>
@@ -217,7 +222,7 @@ pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
 <p>The request returns the complete formation of containers event those which are
 not currently scaled.</p>
 
-<p>Parameters:</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">containers</code>: Array of the containers you want to scale.
@@ -228,6 +233,16 @@ Each <code class="highlighter-rouge">containers</code>:
     </ul>
   </li>
 </ul>
+
+<h3 id="free-usage-limit">Free usage limit</h3>
+
+<p>You can only have 1 ‘web’ container without having defined <a href="https://my.scalingo.com/apps/billing">a payment
+method</a>.</p>
+
+<h3 id="limit">Limit</h3>
+
+<p>There is a hard limit of 10 containers of a given type per application, if you need more:
+<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#115;&#099;&#097;&#108;&#105;&#110;&#103;&#111;&#046;&#099;&#111;&#109;">contact us</a></p>
 
 </div><div class='col-xs-12 col-sm-6 sidebar-code'>
 <p>Example request</p>
@@ -281,7 +296,7 @@ app status has switched to “running” again.</p>
 <p>You can follow the operation progress by following the <code class="highlighter-rouge">Location</code> header,
 pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
 
-<p>Parameters:</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">scope</code>: Array of containers you want to restart.
@@ -331,7 +346,7 @@ pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
 
 <p><code class="highlighter-rouge">POST https://api.scalingo.com/v1/apps/[:app]/rename</code></p>
 
-<p>Parameters:</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">current_name</code>: As validation, should equal the name of the app</li>
@@ -366,7 +381,7 @@ pointing to an <code class="highlighter-rouge">operation</code> resource.</p>
 
 <p><code class="highlighter-rouge">PATCH https://api.scalingo.com/v1/apps/[:app]</code></p>
 
-<p>Parameters</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">app.owner.email</code>: email of the new owner of the app, should be part of the
@@ -447,7 +462,7 @@ environment your application.</p>
 
 <p>See <a href="/one-off.html">how to handle the returned <code class="highlighter-rouge">attach_url</code></a></p>
 
-<p>Parameters:</p>
+<h3 id="parameters">Parameters</h3>
 
 <ul>
   <li><code class="highlighter-rouge">command</code>: Command line which has to be run (example: “bash”)</li>
